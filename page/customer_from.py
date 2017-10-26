@@ -74,7 +74,8 @@ class CustomerFrom(BasePage):
         # 详细地址2
         self.find_element_by_name('addr').send_keys(u'测试详细地址2')
         return self
-    #电子邮箱
+
+    # 电子邮箱
     def customer_email(self, email):
         self.find_element_by_name('email').send_keys(email)
         time.sleep(0.5)
@@ -86,7 +87,8 @@ class CustomerFrom(BasePage):
         return self
 
     def click_save(self):
-        self.find_element_by_css('.btn.btn-info.waves-effect.waves-classic.s-btn-info.waves-effect.waves-classic').click()
+        self.find_element_by_css(
+            '.btn.btn-info.waves-effect.waves-classic.s-btn-info.waves-effect.waves-classic').click()
         self.get_current_page_url()
         time.sleep(0.5)
         return self

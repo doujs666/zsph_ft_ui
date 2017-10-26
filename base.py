@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 class BaseSeleniumTestCase(TestCase):
     def get_web_driver(self):
-        driver = webdriver.Chrome(executable_path=settings.GECKODRIVER_PATH)
+        driver = webdriver.Firefox(executable_path=settings.GECKODRIVER_PATH)
         # driver = webdriver.Chrome(
         #     executable_path=settings.GECKODRIVER_PATH)
         driver.set_window_size(1400, 1000)

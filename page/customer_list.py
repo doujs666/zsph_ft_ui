@@ -4,6 +4,8 @@ import time
 
 
 class CustomerList(BasePage):
+    '''客户列表'''
+
     url = '/customer/list'
 
     def click_new_customer(self):

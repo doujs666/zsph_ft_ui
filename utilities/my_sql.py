@@ -1,6 +1,6 @@
 import db
 
-def select_customer_id(name):
+def select_customer(name):
     detail = db.execute("SELECT id,mobile1,card_no,annual_income,email FROM zsph_customer where name = %s ",
                params=name)
 

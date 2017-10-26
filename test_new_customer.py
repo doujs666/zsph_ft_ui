@@ -4,7 +4,7 @@ from page.test_page import TestPage
 from page.index import Index
 from page.customer_list import CustomerList
 from page.customer_from import CustomerFrom
-from utilities.my_sql import clear_customer,select_customer_id,customer_amount
+from utilities.my_sql import clear_customer, select_customer, customer_amount
 import settings
 
 
@@ -18,8 +18,7 @@ class TestNewCustomer(BaseSeleniumTestCase):
     tel_time = 24
     annual_income = 200000
 
-
-    def test_new_custommer_url(self):
+    def test_new_customer_url(self):
         TestPage(self.selenium).console_login(self.user_name, self.password)
         Index(self.selenium).click_customer_manage()
         # 校验跳转成功后url跳转
@@ -76,20 +75,25 @@ class TestNewCustomer(BaseSeleniumTestCase):
         TestPage(self.selenium).console_login(self.user_name, self.password)
         Index(self.selenium).click_customer_manage()
         CustomerList(self.selenium).click_new_customer()
-        CustomerFrom(self.selenium).new_customer(self.name, self.card_no, self.mobile, self.tel_time, self.email, self.annual_income)
-        db_mobile = select_customer_id(self.name)['mobile1']
+        CustomerFrom(self.selenium).new_customer(self.name, self.card_no, self.mobile, self.tel_time, self.email,
+                                                 self.annual_income)
+        db_mobile = select_customer(self.name)['mobile1']
         self.assertEqual(db_mobile, self.mobile)
-        db_card_no = select_customer_id(self.name)['card_no']
+        db_card_no = select_customer(self.name)['card_no']
         self.assertEqual(db_card_no, self.card_no)
-        db_annual_income = select_customer_id(self.name)['annual_income']
+        db_annual_income = select_customer(self.name)['annual_income']
         self.assertEqual(db_annual_income, int(self.annual_income))
-        db_email = select_customer_id(self.name)['email']
+        db_email = select_customer(self.name)['email']
         self.assertEqual(db_email, self.email)
 
         # 验证customer数量
         new_customer_amount = customer_amount()
-        self.assertEqual(db_customer_amount, new_customer_amount-1)
+        self.assertEqual(db_customer_amount, new_customer_amount - 1)
 
         # clear数据
-        id = select_customer_id(self.name)['id']
-        clear_customer(id)
+        # id = select_customer(self.name)['id']
+        # clear_customer(id)
+
+    def test_url(self):
+        # 验证保存之后的url
+        print '123'

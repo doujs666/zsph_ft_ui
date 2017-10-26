@@ -2,8 +2,8 @@
 from page.base_page import BasePage
 import time
 
-
 class Index(BasePage):
+
     url = '?login'
 
     def click_customer_manage(self):
