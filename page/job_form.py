@@ -50,23 +50,23 @@ class CustomerJob(BasePage):
 
     def job_detail(self):
         # 单位性质
-        marital_status = Select(self.find_element_by_name('unitProperty'))  # 实例化Select
-        marital_status.select_by_value('1')
+        unit_property_status = Select(self.find_element_by_name('unitProperty'))  # 实例化Select
+        unit_property_status.select_by_value('1')
         # 职位级别
-        marital_status = Select(self.find_element_by_name('positionLevel'))  # 实例化Select
-        marital_status.select_by_value('1')
+        position_level_status = Select(self.find_element_by_name('positionLevel'))  # 实例化Select
+        position_level_status.select_by_value('1')
         # 现单位地址
-        marital_status = Select(self.find_element_by_name('addrProvince'))  # 实例化Select
-        marital_status.select_by_value('110000')
+        address_province_status = Select(self.find_element_by_name('addrProvince'))  # 实例化Select
+        address_province_status.select_by_value('110000')
         # 城市
-        marital_status = Select(self.find_element_by_name('addrCity'))  # 实例化Select
-        marital_status.select_by_value('110100')
+        address_city_status = Select(self.find_element_by_name('addrCity'))  # 实例化Select
+        address_city_status.select_by_value('110100')
         # 区
         marital_status = Select(self.find_element_by_name('addrCounty'))  # 实例化Select
         marital_status.select_by_value('110101')
         # 工资发放形式
-        marital_status = Select(self.find_element_by_name('salaryStyle'))  # 实例化Select
-        marital_status.select_by_value('1')
+        salary_style_status = Select(self.find_element_by_name('salaryStyle'))  # 实例化Select
+        salary_style_status.select_by_value('1')
         # 入职时间
         time.sleep(0.5)
         self.find_element_by_name('inductionDate').send_keys('20170101')

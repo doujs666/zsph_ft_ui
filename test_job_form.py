@@ -5,7 +5,7 @@ from page.job_form import CustomerJob
 from utilities.my_sql import select_customer, customer_job
 
 
-class TestNewCustomer(BaseSeleniumTestCase):
+class TestCustomerJob(BaseSeleniumTestCase):
     user_name = 'gaohf'
     password = 'gaohf'
     name = u'测试用户'
