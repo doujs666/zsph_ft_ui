@@ -43,30 +43,30 @@ class CustomerJob(BasePage):
         return self
 
     # 工作地址
-    def job_addr(self, address):
+    def job_address(self, address):
         self.find_element_by_id('addr').send_keys(address)
         time.sleep(0.5)
         return self
 
     def job_detail(self):
         # 单位性质
-        marital_status = Select(self.find_element_by_name('unitProperty'))  # 实例化Select
-        marital_status.select_by_value('1')
+        unit_property = Select(self.find_element_by_name('unitProperty'))  # 实例化Select
+        unit_property.select_by_value('1')
         # 职位级别
-        marital_status = Select(self.find_element_by_name('positionLevel'))  # 实例化Select
-        marital_status.select_by_value('1')
+        position_level = Select(self.find_element_by_name('positionLevel'))  # 实例化Select
+        position_level.select_by_value('1')
         # 现单位地址
-        marital_status = Select(self.find_element_by_name('addrProvince'))  # 实例化Select
-        marital_status.select_by_value('110000')
+        address_province = Select(self.find_element_by_name('addrProvince'))  # 实例化Select
+        address_province.select_by_value('110000')
         # 城市
-        marital_status = Select(self.find_element_by_name('addrCity'))  # 实例化Select
-        marital_status.select_by_value('110100')
+        address_city = Select(self.find_element_by_name('addrCity'))  # 实例化Select
+        address_city.select_by_value('110100')
         # 区
-        marital_status = Select(self.find_element_by_name('addrCounty'))  # 实例化Select
-        marital_status.select_by_value('110101')
+        address_county = Select(self.find_element_by_name('addrCounty'))  # 实例化Select
+        address_county.select_by_value('110101')
         # 工资发放形式
-        marital_status = Select(self.find_element_by_name('salaryStyle'))  # 实例化Select
-        marital_status.select_by_value('1')
+        salary_style = Select(self.find_element_by_name('salaryStyle'))  # 实例化Select
+        salary_style.select_by_value('1')
         # 入职时间
         time.sleep(0.5)
         self.find_element_by_name('inductionDate').send_keys('20170101')
