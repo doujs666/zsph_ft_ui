@@ -7,7 +7,7 @@ from utilities.my_sql import select_customer, customer_job
 
 class TestCustomerJob(BaseSeleniumTestCase):
     user_name = 'gaohf'
-    password = 'gaohf'
+    password = '123456'
     name = u'测试用户'
     corporation = u'测试公司名称'
     department = u'测试部门'

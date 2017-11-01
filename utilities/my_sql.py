@@ -24,7 +24,7 @@ def customer_job(customer_id):
 
 
 def customer_linkman(customer_id):
-    detail = db.execute("SELECT name, tel, addr, position, work_unit FROM zsph_job where customer_id = %s ",
+    detail = db.execute("SELECT name, tel, addr, position, work_unit FROM zsph_linkman where customer_id = %s ",
                         params=customer_id)
     return detail
 
