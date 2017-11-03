@@ -13,7 +13,7 @@ def select_customer(name):
 
 
 def customer_amount():
-    amount = db.execute("select count(*) from credit_test.zsph_customer where create_by='f91cd39638354270a71fc6189270d34d'")
+    amount = db.execute("select count(*) from zsph_customer where create_by='f91cd39638354270a71fc6189270d34d'")
     return amount['count(*)']
 
 
@@ -29,7 +29,16 @@ def customer_linkman(customer_id):
     return detail
 
 
+def customer_loan(customer_id):
+    detail = db.execute("SELECT type, repayment_quota, cycle, apply_quota FROM zsph_loan where customer_id = %s ",
+                        params=customer_id)
+    return detail
 
+
+# loan数量
+def loan_amount():
+    amount = db.execute("select count(*) from zsph_loan where create_by='f91cd39638354270a71fc6189270d34d'")
+    return amount['count(*)']
 
 
 

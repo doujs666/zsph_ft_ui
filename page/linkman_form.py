@@ -77,6 +77,7 @@ class CustomerLinkman(BasePage):
         self.linkman_position(position)
         self.linkman_detail()
         self.click_linkman_save()
+        self.click_job_close()
 
     # 联系人姓名错误
     def customer_linkman_name_error(self):

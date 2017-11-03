@@ -4,7 +4,7 @@ import time
 
 
 class CustomerList(BasePage):
-    '''客户列表'''
+    # 客户列表
 
     url = '/customer/list'
 

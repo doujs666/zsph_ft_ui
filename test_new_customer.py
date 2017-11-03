@@ -10,7 +10,7 @@ import settings
 
 class TestNewCustomer(BaseSeleniumTestCase):
     user_name = 'gaohf'
-    password = 'gaohf'
+    password = 'admin'
     name = u'测试用户'
     email = 'ceshiyouxiang@qq.com'
     card_no = '140202199212166551'

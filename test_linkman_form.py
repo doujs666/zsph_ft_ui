@@ -16,7 +16,7 @@ class TestCustomerLink(BaseSeleniumTestCase):
     work_unit = u'工作单位'
 
     def test_customer_linkman_name(self):
-        TestPage(self.selenium).console_login(self.type_name, self.password)
+        TestPage(self.selenium).console_login(self.user_name, self.password)
         get_customer_id = select_customer(self.type_name)['id']
         message = CustomerLinkman(self.selenium, [get_customer_id]).click_linkman_save().customer_linkman_name_error()
         self.assertEqual(message, u'此值不能为空')
