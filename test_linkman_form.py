@@ -30,7 +30,8 @@ class TestCustomerLink(BaseSeleniumTestCase):
     def test_customer_linkman_v_success(self):
         TestPage(self.selenium).console_login(self.user_name, self.password)
         get_customer_id = select_customer(self.type_name)['id']
-        CustomerLinkman(self.selenium, [get_customer_id]).customer_linkman(self.name, self.tel, self.work_unit, self.address, self.position)
+        CustomerLinkman(self.selenium, [get_customer_id]).customer_linkman(self.name, self.tel, self.work_unit,
+                                                                           self.address, self.position)
         customer_id = select_customer(self.type_name)['id']
         detail = customer_linkman(customer_id)
         # 工作名称

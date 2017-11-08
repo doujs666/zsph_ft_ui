@@ -75,7 +75,8 @@ class TestNewCustomer(BaseSeleniumTestCase):
         TestPage(self.selenium).console_login(self.user_name, self.password)
         Index(self.selenium).click_customer_manage()
         CustomerList(self.selenium).click_new_customer()
-        CustomerFrom(self.selenium).new_customer(self.name, self.card_no, self.mobile, self.tel_time, self.email, self.annual_income)
+        CustomerFrom(self.selenium).new_customer(self.name, self.card_no, self.mobile, self.tel_time, self.email,
+                                                 self.annual_income)
         # db_mobile = select_customer(self.name)['mobile1']
         # self.assertEqual(db_mobile, self.mobile)
         db_card_no = select_customer(self.name)['card_no']

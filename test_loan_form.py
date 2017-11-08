@@ -11,7 +11,7 @@ class TestCustomerLink(BaseSeleniumTestCase):
     user_name = 'gaohf'
     password = 'admin'
     apply_quota = 1000
-    name = '测试用户'
+    name = '测试流程'
     repayment_quota = 100
 
     def test_customer_loan_apply_quota(self):

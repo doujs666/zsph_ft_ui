@@ -67,6 +67,8 @@ class CustomerLoan(BasePage):
         self.click_loan_save()
         self.click_loan_close()
         self.click_loan_submit()
+        self.click_loan_submit_confirm()
+
     # 申请金额error
 
     def customer_loan_apply_quota_error(self):
@@ -82,6 +84,9 @@ class CustomerLoan(BasePage):
     def click_loan_submit(self):
         time.sleep(1)
         self.find_element_by_xpath('//*[@id="apply"]').click()
-        time.sleep(1)
-        self.find_element_by_css('.btn.btn-primary.waves-effect.waves-classic').click()
+        return self
+
+    def click_loan_submit_confirm(self):
+        self.find_element_by_xpath('//*[@id="applySub"]').click()
+        time.sleep(0.5)
         return self

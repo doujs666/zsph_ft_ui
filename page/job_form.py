@@ -60,9 +60,11 @@ class CustomerJob(BasePage):
         address_province_status.select_by_value('110000')
         # 城市
         address_city_status = Select(self.find_element_by_name('addrCity'))  # 实例化Select
+        time.sleep(0.5)
         address_city_status.select_by_value('110100')
         # 区
         marital_status = Select(self.find_element_by_name('addrCounty'))  # 实例化Select
+        time.sleep(0.5)
         marital_status.select_by_value('110101')
         # 工资发放形式
         salary_style_status = Select(self.find_element_by_name('salaryStyle'))  # 实例化Select
@@ -73,6 +75,7 @@ class CustomerJob(BasePage):
 
     # 点击保存按钮
     def click_job_save(self):
+        time.sleep(0.5)
         self.find_element_by_css(
             '.btn.btn-info.waves-effect.waves-classic.s-btn-info.waves-effect.waves-classic').click()
         return self
