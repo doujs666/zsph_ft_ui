@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 class BaseSeleniumTestCase(TestCase):
+
     def get_web_driver(self):
         driver = webdriver.Firefox(executable_path=settings.GECKODRIVER_PATH)
         # driver = webdriver.Chrome(
@@ -34,6 +35,7 @@ class BaseSeleniumTestCase(TestCase):
 
 
 class ImageCaptcha(object):
+
     def get_image_captcha(self, file_path):
 
         img = Image.open(file_path)

@@ -25,20 +25,20 @@ class LoanList(BasePage):
         self.find_element_by_xpath('//*[@id="list-group"]/li[1]').click()
         return self
 
-    # 借款列表的一行
-    def get_loan_list(self):
-        rows = self.find_elements_by_css('.panel-body.s_panelbox')
+    # 点击查看按钮
+    def click_examine_button(self, user_name):
+        rows = self.find_elements_by_css('.table tbody tr')
         ret = []
         for row in rows:
             tds = row.find_elements_by_tag_name('td')
             if tds:
-                val = {"name": tds[0].text, "region": tds[1].text, "department": tds[2].text,
-                       "risk_control": tds[3].text,"team_manager": tds[4].text, "customer_manager": tds[5].text,
-                       "date": tds[6].text,"borrow_type": tds[7].text, "apply_money": tds[8].text,
-                       "get_money": tds[9].text, "deadline": tds[11].text, "interest_rate": tds[12].text,
-                       "status": tds[13].text, "detail": tds[14].text}
-                ret.append(val)
-        print ret
+                val = {'name': tds[0].text, 'detail': tds[12].text}
+                if u'查看' in val['detail']:
+                    ret.append(val['name'])
+        index = ret.index(user_name)
+        handel = self.find_elements_by_css('.handle')
+        handel[index].click()
+        return self
 
     # 点击分配角色
     def click_allocation_role(self, user_name):
@@ -47,13 +47,24 @@ class LoanList(BasePage):
         for row in rows:
             tds = row.find_elements_by_tag_name('td')
             if tds:
-                val = {'name': tds[0].text, 'detail': tds[11].text}
+                val = {'name': tds[0].text, 'detail': tds[10].text}
                 if u'分配' in val['detail']:
                     ret.append(val['name'])
         index = ret.index(user_name)
         handel = self.find_elements_by_css('.handle .rit')
         handel[index].click()
         return self
+
+    # 获取借款状态
+    def get_loan_status(self, user_name):
+        rows = self.find_elements_by_css('.table tbody tr')
+        ret = []
+        for row in rows:
+            tds = row.find_elements_by_tag_name('td')
+            if tds:
+                val = {'name': tds[0].text, 'detail': tds[-2].text}
+                if user_name == val['name']:
+                    return val['detail']
 
     # 分配角色流程
     def allocation_role(self, user_name):

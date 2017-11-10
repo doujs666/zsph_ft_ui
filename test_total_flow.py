@@ -1,52 +1,25 @@
 # coding=UTF-8
 from base import BaseSeleniumTestCase
-from page.test_page import TestPage
-from page.index import Index
-from page.customer_list import CustomerList
-from page.customer_from import CustomerFrom
-from page.job_form import CustomerJob
-from page.linkman_form import CustomerLinkman
-from page.loan_form import CustomerLoan
+from page.total_flow import TotalFlow
 from page.loan_list import LoanList
+from page.index import Index
 from utilities.my_sql import select_customer,clear_customer
-import random
 
 
 class TestTotalFlow(BaseSeleniumTestCase):
-    risk_management = 'gaohf'
-    judge_manager = 'zhangb'
-    password = 'admin'
+
     name = u'测试流程'
-    card_no = '440201198104192672'
-    mobile = '13651020524'
-    corporation = u'测试公司名称'
-    department = u'测试部门'
-    position = u'测试职位'
-    tel_zone = '010'
-    tel = '9438428'
-    address = u'测试地址'
-    tel = '17600719709'
 
-    def test_total_flow(self):
-        TestPage(self.selenium).console_login(self.risk_management, self.password)
-        Index(self.selenium).click_customer_manage()
-        CustomerList(self.selenium).click_new_customer()
-        CustomerFrom(self.selenium).new_customer(self.name, self.card_no, self.mobile, 24, '281545444@qq.com',
-                                                 200000)
-        get_customer_id = select_customer(self.name)['id']
-        CustomerJob(self.selenium, [get_customer_id]).customer_job(u'测试公司名称', u'测试部门', u'测试职位',
-                                                                   '010', '5438438', u'测试地址')
-        CustomerLinkman(self.selenium, [get_customer_id]).customer_linkman(u'测试用户类型', self.tel, u'工作单位',
-                                                                           u'测试地址', u'测试职位')
-        type_number = str(random.randint(1, 6))
-        cycle_number = str((random.randint(1, 3)) * 12)
-        CustomerLoan(self.selenium, [get_customer_id]).customer_loan(type_number, 10000, cycle_number,
-                                                                     100)
+    def test_loan_status(self):
+        TotalFlow(self.selenium).risk_management_new_customer()
+        status = LoanList(self.selenium).get_loan_status(self.name)
+        self.assertEqual(status, u'待审核')
         Index(self.selenium).click_user_list().click_user_quit()
-
-        TestPage(self.selenium).console_login(self.judge_manager, self.password)
-        LoanList(self.selenium).allocation_role(self.name)
+        TotalFlow(self.selenium).judge_manager_allocation_role()
+        status1 = LoanList(self.selenium).get_loan_status(self.name)
+        self.assertEqual(status1, u'审批中')
 
     def tearDown(self):
+        super(TestTotalFlow, self).tearDown()
         customer_id = select_customer(self.name)['id']
         clear_customer(customer_id)

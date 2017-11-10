@@ -1,5 +1,8 @@
 # coding=utf-8
-
-
-a = u'当前第 1 页 20条/页 共 3 页 总 48 条'
-print a[22:24]
+user_name = u'测试'
+ret = ['123', '232', '123213']
+val = {'name': u'测试'}
+ret.append(val['name'])
+print ret[0]
+index = ret.index(user_name)
+print index

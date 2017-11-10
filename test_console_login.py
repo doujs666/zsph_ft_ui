@@ -4,6 +4,7 @@ from page.test_page import TestPage
 from page.index import Index
 import settings
 
+
 class TestConsoleLogin(BaseSeleniumTestCase):
     user_name = 'gaohf'
     password = 'admin'

@@ -1,5 +1,5 @@
 # coding=UTF-8
-from base import BaseSeleniumTestCase
+from page.base_page import BasePage
 from page.test_page import TestPage
 from page.index import Index
 from page.customer_list import CustomerList
@@ -12,12 +12,13 @@ from utilities.my_sql import select_customer
 import random
 
 
-class TotalFlow(BaseSeleniumTestCase):
+class TotalFlow(BasePage):
+
     risk_management = 'gaohf'
     judge_manager = 'zhangb'
     password = 'admin'
     name = u'测试流程'
-    card_no = '440201198104192672'
+    card_no = '640105197303265646'
     mobile = '13651020524'
     corporation = u'测试公司名称'
     department = u'测试部门'
@@ -26,6 +27,7 @@ class TotalFlow(BaseSeleniumTestCase):
     tel = '9438428'
     address = u'测试地址'
     tel = '17600719709'
+    url = '?login'
 
     # 新建用户
     def risk_management_new_customer(self):
@@ -37,13 +39,12 @@ class TotalFlow(BaseSeleniumTestCase):
         get_customer_id = select_customer(self.name)['id']
         CustomerJob(self.selenium, [get_customer_id]).customer_job(u'测试公司名称', u'测试部门', u'测试职位',
                                                                    '010', '5438438', u'测试地址')
-        CustomerLinkman(self.selenium, [get_customer_id]).customer_linkman(u'测试用户类型', self.tel, u'工作单位',
-                                                                           u'测试地址', u'测试职位')
+        # CustomerLinkman(self.selenium, [get_customer_id]).customer_linkman(u'测试用户类型', self.tel, u'工作单位',
+        #                                                                    u'测试地址', u'测试职位')
         type_number = str(random.randint(1, 6))
         cycle_number = str((random.randint(1, 3)) * 12)
         CustomerLoan(self.selenium, [get_customer_id]).customer_loan(type_number, 10000, cycle_number,
                                                                      100)
-        Index(self.selenium).click_user_list().click_user_quit()
 
     # 经理分配角色
     def judge_manager_allocation_role(self):

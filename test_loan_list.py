@@ -5,7 +5,7 @@ from page.loan_list import LoanList
 
 
 class TestCustomerLink(BaseSeleniumTestCase):
-    user_name = 'zhangb'
+    user_name = 'gaohf'
     password = 'admin'
     apply_quota = 1000
     name = u'测试用户'
@@ -13,5 +13,4 @@ class TestCustomerLink(BaseSeleniumTestCase):
 
     def test_customer_loan_apply_quota(self):
         TestPage(self.selenium).console_login(self.user_name, self.password)
-        LoanList(self.selenium).allocation_role(self.name)
-
+        LoanList(self.selenium).get_loan_status(u'联系人')

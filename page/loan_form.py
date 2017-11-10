@@ -87,6 +87,6 @@ class CustomerLoan(BasePage):
         return self
 
     def click_loan_submit_confirm(self):
-        self.find_element_by_xpath('//*[@id="applySub"]').click()
         time.sleep(0.5)
+        self.find_element_by_xpath('//*[@id="applySub"]').click()
         return self
