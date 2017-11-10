@@ -39,8 +39,8 @@ class TotalFlow(BasePage):
         get_customer_id = select_customer(self.name)['id']
         CustomerJob(self.selenium, [get_customer_id]).customer_job(u'测试公司名称', u'测试部门', u'测试职位',
                                                                    '010', '5438438', u'测试地址')
-        # CustomerLinkman(self.selenium, [get_customer_id]).customer_linkman(u'测试用户类型', self.tel, u'工作单位',
-        #                                                                    u'测试地址', u'测试职位')
+        CustomerLinkman(self.selenium, [get_customer_id]).linkman(u'测试联系人姓名', u'工作单位', u'测试地址',
+                                                                  u'测试职位', '17600719709')
         type_number = str(random.randint(1, 6))
         cycle_number = str((random.randint(1, 3)) * 12)
         CustomerLoan(self.selenium, [get_customer_id]).customer_loan(type_number, 10000, cycle_number,
