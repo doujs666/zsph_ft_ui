@@ -50,6 +50,12 @@ def clear_customer(customer_id):
     db.execute("DELETE FROM zsph_customer where id = %s ", params=customer_id)
 
 
+# 清除信用报告
 def clear_credit_report(customer_id):
     db.execute("DELETE FROM zsph_credit_report where customer_id = %s ", params=customer_id)
+
+
+# 清除电核信息
+def clear_info_verify(customer_id):
+    db.execute("DELETE FROM zsph_info_verify where customer_id = %s ", params=customer_id)
 
