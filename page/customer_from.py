@@ -57,7 +57,7 @@ class CustomerFrom(BasePage):
         time.sleep(0.5)
         card_addr_city = Select(self.find_element_by_name('cardAddrCity'))  # 实例化Select
         card_addr_city.select_by_value('110100')
-        time.sleep(0.5)
+        time.sleep(1)
         card_addr_county = Select(self.find_element_by_name('cardAddrCounty'))  # 实例化Select
         card_addr_county.select_by_value('110105')
         # 详细地址

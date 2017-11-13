@@ -55,6 +55,13 @@ class CustomerLinkman(BasePage):
         time.sleep(0.5)
         return self
 
+    # 关闭成功按钮
+    def click_linkman_quit(self):
+        self.find_element_by_css(
+            '.btn.btn-default.btn-pure.waves-effect.waves-classic.waves-effect.waves-classic').click()
+        time.sleep(0.5)
+        return self
+
     # 点击添加联系人
     # 点击删除按钮
 
@@ -66,3 +73,4 @@ class CustomerLinkman(BasePage):
             self.linkman_work_unit(work_unit, str(i)).linkman_address(address, str(i)).linkman_position(position, str(
                 i)).linkman_tel(tel, str(i))
         self.click_linkman_save()
+        self.click_linkman_quit()

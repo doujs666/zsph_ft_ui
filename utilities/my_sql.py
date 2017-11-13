@@ -9,14 +9,6 @@ def select_customer(name):
     return detail
 
 
-def clear_customer(customer_id):
-    db.execute("DELETE FROM zsph_job where customer_id = %s ", params=customer_id)
-    # db.execute("DELETE FROM zsph_linkman where customer_id = %s ", params=customer_id)
-    db.execute("DELETE FROM zsph_loan where customer_id = %s ", params=customer_id)
-    db.execute("DELETE FROM zsph_risk_warning where customer_id = %s ", params=customer_id)
-    db.execute("DELETE FROM zsph_customer where id = %s ", params=customer_id)
-
-
 # 获取customer_amount数量
 def customer_amount():
     amount = db.execute("select count(*) from zsph_customer where create_by='f91cd39638354270a71fc6189270d34d'")
@@ -50,5 +42,14 @@ def loan_amount():
     return amount['count(*)']
 
 
+def clear_customer(customer_id):
+    db.execute("DELETE FROM zsph_job where customer_id = %s ", params=customer_id)
+    db.execute("DELETE FROM zsph_linkman where customer_id = %s ", params=customer_id)
+    db.execute("DELETE FROM zsph_loan where customer_id = %s ", params=customer_id)
+    db.execute("DELETE FROM zsph_risk_warning where customer_id = %s ", params=customer_id)
+    db.execute("DELETE FROM zsph_customer where id = %s ", params=customer_id)
 
+
+def clear_credit_report(customer_id):
+    db.execute("DELETE FROM zsph_credit_report where customer_id = %s ", params=customer_id)
 

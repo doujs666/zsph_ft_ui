@@ -8,7 +8,7 @@ from utilities.my_sql import select_customer, customer_linkman
 class TestCustomerLink(BaseSeleniumTestCase):
     login_name = 'gaohf'
     password = 'admin'
-    name = '234'
+    name = u'张博大'
     linkman_name = u'测试联系人姓名'
     position = u'测试职位'
     tel = '17600719709'
