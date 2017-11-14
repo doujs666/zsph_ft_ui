@@ -6,7 +6,6 @@ import time
 class InfoVerify(BasePage):
     url = '/infoVerify/net/list?customer.id={}'
 
-    # 二/三代身份证
     def info_verify_detail(self, text):
         for i in range(15):
             num = 'infoVerifyList[' + str(i) + '].remarks'
