@@ -5,7 +5,7 @@ import db
 # 获取customer_id
 def select_customer(name):
     detail = db.execute("SELECT id,mobile1,card_no,annual_income,email FROM zsph_customer where name = %s ",
-               params=name)
+                        params=name)
     return detail
 
 
@@ -62,12 +62,21 @@ def clear_info_verify(customer_id):
 
 # 更新信审结论
 def update_contract_form(customer_id):
-    db.execute("UPDATE zsph_loan SET type = null, cycle = null, rate = null, remarks = null, actual_quota = null where customer_id = %s", params=customer_id)
-    db.execute("UPDATE zsph_customer SET apply_state=15 WHERE id=%s", params=customer_id)
+    db.execute(
+        "UPDATE zsph_loan SET type = null, cycle = null, rate = null, remarks = null, actual_quota = null where customer_id = %s",
+        params=customer_id)
+    db.execute("UPDATE zsph_customer SET apply_st ate=15 WHERE id=%s", params=customer_id)
 
 
-# 获取信审结论
+# 获取信审专员信审结论
 def get_contract_form(customer_id):
     detail = db.execute("SELECT type,cycle,rate,actual_quota FROM zsph_loan where customer_id = %s ",
-               params=customer_id)
+                        params=customer_id)
+    return detail
+
+
+# 获取信审主管信审结论
+def get_manager_contract_form(customer_id):
+    detail = db.execute("SELECT cycle,rate,actual_quota,remarks FROM zsph_contract where customer_id = %s ",
+                        params=customer_id)
     return detail

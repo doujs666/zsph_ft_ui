@@ -59,18 +59,20 @@ class CustomerLoan(BasePage):
             '.btn.btn-default.btn-pure.waves-effect.waves-classic.waves-effect.waves-classic').click()
         return self
 
-    # loan流程
-    def customer_loan(self, type_number, apply_quota, cycle_number, repayment_quota):
+    # loan保存流程
+    def customer_loan_save(self, type_number, apply_quota, cycle_number, repayment_quota):
         self.loan_type(type_number).loan_apply_quota(apply_quota).loan_cycle(cycle_number).loan_repayment_quota(
             repayment_quota)
         self.loan_detail()
         self.click_loan_save()
         self.click_loan_close()
+
+    # loan提交流程
+    def customer_loan_submit(self):
         self.click_loan_submit()
         self.click_loan_submit_confirm()
 
     # 申请金额error
-
     def customer_loan_apply_quota_error(self):
         message = self.find_element_by_xpath('//*[@id="Loan_form"]/div[2]/div[3]/small[1]').text
         return message
