@@ -9,9 +9,9 @@ import time
 class TestContractForm(BaseSeleniumTestCase):
     login_name = 'wanqh'
     password = 'admin'
-    name = u'测试用户'
-    loan_type = '1'
-    rate = '2.39'
+    name = u'张十二博'
+    loan_type = '2'
+    rate = '2.18'
     cycle = '24'
     actual_quota = '20000.0'
     remarks = u'备注'
@@ -32,14 +32,14 @@ class TestContractForm(BaseSeleniumTestCase):
         get_time = time.strftime('%Y-%m-%d', time.localtime(time.time()))
         self.assertEqual(decision_date, get_time)
         # 验证数据库存储
-        db_type = get_contract_form(get_customer_id)['type']
-        self.assertEqual(db_type, self.loan_type)
-        db_rate = str(get_contract_form(get_customer_id)['rate'])
-        self.assertEqual(db_rate, self.rate)
-        db_cycle = str(get_contract_form(get_customer_id)['cycle'])
-        self.assertEqual(db_cycle, self.cycle)
-        db_actual_quota = str(get_contract_form(get_customer_id)['actual_quota'])
-        self.assertEqual(db_actual_quota, self.actual_quota)
+        db_audit_type = get_contract_form(get_customer_id)['audit_type']
+        self.assertEqual(db_audit_type, self.loan_type)
+        db_audit_rate = str(get_contract_form(get_customer_id)['audit_rate'])
+        self.assertEqual(db_audit_rate, self.rate)
+        db_audit_cycle = str(get_contract_form(get_customer_id)['audit_cycle'])
+        self.assertEqual(db_audit_cycle, self.cycle)
+        db_audit_actual_quota = str(get_contract_form(get_customer_id)['autid_actual_quota'])
+        self.assertEqual(db_audit_actual_quota, self.actual_quota)
 
     # 验证审核通过状态
     def test_contract_form_pass(self):

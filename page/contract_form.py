@@ -27,27 +27,28 @@ class ContractForm(BasePage):
 
     # 借款类型
     def loan_type(self, number):
-        get_loan_type = Select(self.find_element_by_name('type'))  # 实例化Select
+        get_loan_type = Select(self.find_element_by_id('type'))  # 实例化Select
         time.sleep(0.5)
         get_loan_type.select_by_value(number)
         return self
 
     # 利率
-    def loan_rate(self, number):
-        get_loan_rate = Select(self.find_element_by_name('rate'))  # 实例化Select
-        time.sleep(0.5)
-        get_loan_rate.select_by_value(number)
-        return self
+    # def loan_rate(self, number):
+    #     get_loan_rate = Select(self.find_element_by_name('rate'))  # 实例化Select
+    #     time.sleep(0.5)
+    #     get_loan_rate.select_by_value(number)
+    #     return self
 
     # 期限
     def loan_cycle(self, number):
-        get_loan_rate = Select(self.find_element_by_name('cycle'))  # 实例化Select
+        get_loan_rate = Select(self.find_element_by_id('cycle'))  # 实例化Select
         time.sleep(0.5)
         get_loan_rate.select_by_value(number)
         return self
 
     # 到手金额
     def loan_actual_quota(self, actual_quota):
+        self.find_element_by_name('actualQuota').clear()
         self.find_element_by_name('actualQuota').send_keys(actual_quota)
         time.sleep(0.5)
         return self

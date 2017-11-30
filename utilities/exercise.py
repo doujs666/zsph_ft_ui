@@ -1,9 +1,4 @@
 # coding=utf-8
 
-a = 'reje'
-if a == 'pass':
-    print 'ok'
-elif a == 'reject':
-    print 'ok1'
-else:
-    print 'ok2'
+for i in range(1,55):
+    print i

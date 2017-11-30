@@ -55,7 +55,7 @@ def clear_credit_report(customer_id):
     db.execute("DELETE FROM zsph_credit_report where customer_id = %s ", params=customer_id)
 
 
-# 清除电核信息
+# 清除电核，网核信息
 def clear_info_verify(customer_id):
     db.execute("DELETE FROM zsph_info_verify where customer_id = %s ", params=customer_id)
 
@@ -63,15 +63,16 @@ def clear_info_verify(customer_id):
 # 更新信审结论
 def update_contract_form(customer_id):
     db.execute(
-        "UPDATE zsph_loan SET type = null, cycle = null, rate = null, remarks = null, actual_quota = null where customer_id = %s",
+        "UPDATE zsph_loan SET audit_type = null, audit_cycle = null, audit_rate = null, remarks = null, autid_actual_quota = null where customer_id = %s",
         params=customer_id)
-    db.execute("UPDATE zsph_customer SET apply_st ate=15 WHERE id=%s", params=customer_id)
+    db.execute("UPDATE zsph_customer SET apply_state=15 WHERE id=%s", params=customer_id)
 
 
 # 获取信审专员信审结论
 def get_contract_form(customer_id):
-    detail = db.execute("SELECT type,cycle,rate,actual_quota FROM zsph_loan where customer_id = %s ",
-                        params=customer_id)
+    detail = db.execute(
+        "SELECT audit_type,audit_cycle,audit_rate,autid_actual_quota FROM zsph_loan where customer_id = %s ",
+        params=customer_id)
     return detail
 
 

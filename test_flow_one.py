@@ -3,7 +3,7 @@ from base import BaseSeleniumTestCase
 from page.total_flow import TotalFlow
 from page.loan_list import LoanList
 from page.index import Index
-from utilities.my_sql import select_customer, clear_customer, clear_credit_report
+from utilities.my_sql import select_customer, clear_customer, clear_credit_report, clear_info_verify
 
 
 class TestTotalFlow(BaseSeleniumTestCase):
@@ -12,7 +12,7 @@ class TestTotalFlow(BaseSeleniumTestCase):
     judge_manager = 'zhangb'
     credit_person = 'wanqh'
     name = u'张十一博'
-    card_no = '360201198911103411'
+    card_no = '340827198311170460'
     mobile = '13522241003'
     status = 'pass'
 
@@ -31,4 +31,5 @@ class TestTotalFlow(BaseSeleniumTestCase):
         super(TestTotalFlow, self).tearDown()
         customer_id = select_customer(self.name)['id']
         clear_credit_report(customer_id)
+        clear_info_verify(customer_id)
         clear_customer(customer_id)

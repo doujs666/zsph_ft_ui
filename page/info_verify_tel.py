@@ -3,11 +3,11 @@ from page.base_page import BasePage
 import time
 
 
-class InfoVerify(BasePage):
+class InfoVerifyTel(BasePage):
     url = '/infoVerify/tel/list?customer.id={}'
 
     def info_verify_detail(self, text):
-        for i in range(34):
+        for i in range(1, 55):
             num = 'infoVerifyList[' + str(i) + '].remarks'
             self.find_element_by_name(num).send_keys(text)
             time.sleep(0.5)

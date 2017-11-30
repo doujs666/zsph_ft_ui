@@ -10,6 +10,8 @@ from page.loan_form import CustomerLoan
 from page.loan_list import LoanList
 from utilities.my_sql import select_customer
 from page.credit_report import CreditReport
+from page.info_verify_net import InfoVerifyNet
+from page.info_verify_tel import InfoVerifyTel
 from page.contract_form import ContractForm
 import random
 
@@ -47,6 +49,8 @@ class TotalFlow(BasePage):
         TestPage(self.selenium).console_login(self.credit_person, self.password)
         get_customer_id = select_customer(name)['id']
         CreditReport(self.selenium, [get_customer_id]).credit_report(6, 3000, 4000, 5000, 6000, 7000)
+        InfoVerifyNet(self.selenium, [get_customer_id]).info_verify(u'网核信息')
+        InfoVerifyTel(self.selenium, [get_customer_id]).info_verify(u'电核信息')
         ContractForm(self.selenium, [get_customer_id]).contract_form('1', '2.39', '24', '20000', u'备注')
         if status == 'pass':
             ContractForm(self.selenium, [get_customer_id]).contract_form_submit_pass()

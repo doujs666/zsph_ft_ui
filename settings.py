@@ -1,5 +1,5 @@
 ENV = 'test'
-WEB_TEST_BASE_URL = "http://116.62.207.57/a"
+WEB_TEST_BASE_URL = "http://116.62.207.57"
 WAIT_TIME = 10
 
 #redis

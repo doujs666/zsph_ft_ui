@@ -3,7 +3,7 @@ from page.base_page import BasePage
 import time
 
 
-class InfoVerify(BasePage):
+class InfoVerifyNet(BasePage):
     url = '/infoVerify/net/list?customer.id={}'
 
     def info_verify_detail(self, text):
