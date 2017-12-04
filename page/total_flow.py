@@ -13,6 +13,7 @@ from page.credit_report import CreditReport
 from page.info_verify_net import InfoVerifyNet
 from page.info_verify_tel import InfoVerifyTel
 from page.contract_form import ContractForm
+from page.manager_contract_form import ManagerContractForm
 import random
 
 
@@ -20,6 +21,7 @@ class TotalFlow(BasePage):
     risk_management = 'gaohf'
     judge_manager = 'zhangb'
     credit_person = 'wanqh'
+
     password = 'admin'
     url = '?login'
 
@@ -44,7 +46,7 @@ class TotalFlow(BasePage):
         TestPage(self.selenium).console_login(self.judge_manager, self.password)
         LoanList(self.selenium).allocation_role(name)
 
-    # 风控专员审核
+    # 信审专员审核
     def risk_management_submit_audit(self, name, status):
         TestPage(self.selenium).console_login(self.credit_person, self.password)
         get_customer_id = select_customer(name)['id']
@@ -59,5 +61,23 @@ class TotalFlow(BasePage):
         else:
             ContractForm(self.selenium, [get_customer_id]).contract_form_submit_repulse()
 
-
-
+    # 信审主管审核
+    def manager_contract_form(self, login_name, name, status):
+        TestPage(self.selenium).console_login(login_name, self.password)
+        get_customer_id = select_customer(name)['id']
+        ManagerContractForm(self.selenium, [get_customer_id]).contract_form('4', '2.39', '36', '100000', u'备注')
+        if status == 'pass':
+            ManagerContractForm(self.selenium,
+                                [get_customer_id]).contract_form_submit_pass()
+        if status == 'reject':
+            ManagerContractForm(self.selenium,
+                                [get_customer_id]).contract_form_submit_reject()
+        if status == 'reject_commissioner':
+            ManagerContractForm(self.selenium,
+                                [get_customer_id]).contract_form_submit_reject_commissioner()
+        if status == 'field_reference':
+            ManagerContractForm(self.selenium,
+                                [get_customer_id]).contract_form_submit_field_reference()
+        if status == 'repulse':
+            ManagerContractForm(self.selenium,
+                                [get_customer_id]).contract_form_submit_repulse()

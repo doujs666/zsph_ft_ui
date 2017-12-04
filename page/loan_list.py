@@ -53,7 +53,7 @@ class LoanList(BasePage):
         for row in rows:
             tds = row.find_elements_by_tag_name('td')
             if tds:
-                val = {'name': tds[1].text, 'detail': tds[9].text}
+                val = {'name': tds[1].text, 'detail': tds[-2].text}
                 if user_name == val['name'] and u'待审核' == val['detail']:
                     self.find_element_by_name('id').click()
                     return self

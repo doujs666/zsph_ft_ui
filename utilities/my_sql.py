@@ -60,7 +60,7 @@ def clear_info_verify(customer_id):
     db.execute("DELETE FROM zsph_info_verify where customer_id = %s ", params=customer_id)
 
 
-# 更新信审结论
+# 更新信审专员信审结论
 def update_contract_form(customer_id):
     db.execute(
         "UPDATE zsph_loan SET audit_type = null, audit_cycle = null, audit_rate = null, remarks = null, autid_actual_quota = null where customer_id = %s",
@@ -78,6 +78,19 @@ def get_contract_form(customer_id):
 
 # 获取信审主管信审结论
 def get_manager_contract_form(customer_id):
-    detail = db.execute("SELECT cycle,rate,actual_quota,remarks FROM zsph_contract where customer_id = %s ",
+    detail = db.execute("SELECT type,cycle,rate,actual_quota,remarks FROM zsph_contract where customer_id = %s ",
                         params=customer_id)
     return detail
+
+
+# 更新信审主管信审结论
+def update_manager_contract_form(customer_id):
+    db.execute(
+        "UPDATE zsph_contract SET type = null, cycle = null, rate = null, remarks = null, actual_quota = null, governor_id=null, decision_date=null where customer_id = %s",
+        params=customer_id)
+    db.execute("UPDATE zsph_customer SET apply_state=20 WHERE id=%s", params=customer_id)
+
+
+# 清除contract数据
+def clear_contract(customer_id):
+    db.execute("DELETE FROM zsph_contract where customer_id = %s ", params=customer_id)
