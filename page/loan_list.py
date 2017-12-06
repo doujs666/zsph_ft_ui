@@ -57,7 +57,7 @@ class LoanList(BasePage):
                 if user_name == val['name'] and u'待审核' == val['detail']:
                     self.find_element_by_name('id').click()
                     return self
-        #             ret.append(val['name'])
+        #           ret.append(val['name'])
         # index = ret.index(user_name)
         # handel = self.find_elements_by_css('.handle .rit')
         # handel[index].click()

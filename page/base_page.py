@@ -143,6 +143,11 @@ class BasePage(object):
         return WebDriverWait(self.selenium, wait_time).until(
             expected.presence_of_all_elements_located((By.XPATH, selector)))
 
+    @fail_on_screenshot
+    def find_elements_by_name(self, selector, wait_time=WAIT_TIME):
+        return WebDriverWait(self.selenium, wait_time).until(
+            expected.presence_of_all_elements_located((By.NAME, selector)))
+
     # -------------------------------------------------------------------------------------------------------------
     '''判断某个元素在是否存在于dom或不可见,如果可见返回False,不可见返回这个元素'''
 

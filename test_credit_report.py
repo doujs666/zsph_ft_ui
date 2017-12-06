@@ -7,6 +7,7 @@ import random
 
 
 class TestCreditReport(BaseSeleniumTestCase):
+    # 信用报告
     login_name = 'wanqh'
     password = 'admin'
     name = u'测试用户'

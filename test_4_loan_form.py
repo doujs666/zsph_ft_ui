@@ -8,14 +8,15 @@ import random
 
 
 class TestCustomerLink(BaseSeleniumTestCase):
-    user_name = 'gaohf'
+    # 申请信息
+    login_name = 'gaohf'
     password = 'admin'
     apply_quota = 1000
     name = '测试流程'
     repayment_quota = 100
 
     def test_customer_loan_apply_quota(self):
-        TestPage(self.selenium).console_login(self.user_name, self.password)
+        TestPage(self.selenium).console_login(self.login_name, self.password)
         get_customer_id = select_customer(self.name)['id']
         message = CustomerLoan(self.selenium, [get_customer_id]).loan_apply_quota(
             'addd').customer_loan_apply_quota_error()

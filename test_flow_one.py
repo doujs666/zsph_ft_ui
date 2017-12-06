@@ -5,7 +5,6 @@ from page.loan_list import LoanList
 from page.index import Index
 from utilities.my_sql import select_customer, clear_customer, clear_credit_report, clear_info_verify, clear_contract
 
-
 class TestTotalFlow(BaseSeleniumTestCase):
     # 风控专员审核通过
     risk_management = 'gaohf'

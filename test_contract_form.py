@@ -7,6 +7,7 @@ import time
 
 
 class TestContractForm(BaseSeleniumTestCase):
+    # 验证信审专员信审结论
     login_name = 'wanqh'
     password = 'admin'
     name = u'张十二博'

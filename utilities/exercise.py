@@ -1,4 +1,6 @@
 # coding=utf-8
-
-for i in range(1,55):
-    print i
+ret = [u'笑啦']
+ret.append(u'小刘')
+a = ret.index(u'小刘')
+print a
+print ret
