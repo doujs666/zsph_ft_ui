@@ -22,8 +22,11 @@ class TestNewCustomer(BaseSeleniumTestCase):
         TestPage(self.selenium).console_login(self.user_name, self.password)
         Index(self.selenium).click_customer_manage()
         # 校验跳转成功后url跳转
-        after_login_url = CustomerList(self.selenium).click_new_customer().get_current_page_url()
-        self.assertEqual(after_login_url, settings.WEB_TEST_BASE_URL + '/customer/form')
+        CustomerList(self.selenium).click_new_customer()
+        handles = CustomerList(self.selenium).get_window_handles()
+        url = CustomerList(self.selenium).choose_window_handle(handles[2]).get_current_page_url()
+
+        self.assertEqual(url, settings.WEB_TEST_BASE_URL + '/customer/form')
 
     def test_customer_name(self):
         TestPage(self.selenium).console_login(self.user_name, self.password)

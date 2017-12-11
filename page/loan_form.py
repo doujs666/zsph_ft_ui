@@ -9,14 +9,15 @@ class CustomerLoan(BasePage):
 
     # 申请金额
     def loan_apply_quota(self, apply_quota):
+        self.find_element_by_id('applyQuota').clear()
         self.find_element_by_id('applyQuota').send_keys(apply_quota)
         time.sleep(0.5)
         return self
 
     # 每月最高还款
     def loan_repayment_quota(self, repayment_quota):
-        self.find_element_by_id('repaymentQuota').send_keys(repayment_quota)
         time.sleep(0.5)
+        self.find_element_by_id('repaymentQuota').send_keys(repayment_quota)
         return self
 
     # 借款类型
@@ -69,22 +70,25 @@ class CustomerLoan(BasePage):
 
     # loan提交流程
     def customer_loan_submit(self):
+        time.sleep(2)
         self.click_loan_submit()
         self.click_loan_submit_confirm()
 
     # 申请金额error
     def customer_loan_apply_quota_error(self):
+        time.sleep(2)
         message = self.find_element_by_xpath('//*[@id="Loan_form"]/div[2]/div[3]/small[1]').text
         return message
 
     # 可接受最高月还款error
     def customer_loan_repayment_quota_error(self):
+        time.sleep(1)
         message = self.find_element_by_xpath('//*[@id="Loan_form"]/div[3]/div[1]/small[1]').text
         return message
 
     # 点击提交按钮
     def click_loan_submit(self):
-        time.sleep(1)
+        time.sleep(2)
         self.find_element_by_xpath('//*[@id="apply"]').click()
         return self
 

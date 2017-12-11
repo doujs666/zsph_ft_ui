@@ -7,7 +7,7 @@ from page.customer_from import CustomerFrom
 from page.job_form import CustomerJob
 from page.linkman_form import CustomerLinkman
 from page.loan_form import CustomerLoan
-from page.loan_list import LoanList
+from page.credit_audit_loan_list import CreditAuditLoanList
 from utilities.my_sql import select_customer
 from page.credit_report import CreditReport
 from page.info_verify_net import InfoVerifyNet
@@ -44,7 +44,7 @@ class TotalFlow(BasePage):
     # 经理分配角色
     def judge_manager_allocation_role(self, name):
         TestPage(self.selenium).console_login(self.judge_manager, self.password)
-        LoanList(self.selenium).allocation_role(name)
+        CreditAuditLoanList(self.selenium).allocation_role(name)
 
     # 信审专员审核
     def risk_management_submit_audit(self, name, status):

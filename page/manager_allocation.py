@@ -38,10 +38,10 @@ class ManagerAllocation(BasePage):
                 val = {'name': tds[1].text, 'detail': tds[-2].text}
                 # if u'待审核' == val['detail']:
                 ret.append(val['name'])
+                # handel = self.find_elements_by_name('id')
+                index = (ret.index(user_name))
                 handel = self.find_elements_by_name('id')
-        index = (ret.index(user_name))-1
-        handel = self.find_elements_by_name('id')
-        handel[index].click()
+                handel[index].click()
         return self
 
     # 获取借款状态
@@ -50,9 +50,9 @@ class ManagerAllocation(BasePage):
         for row in rows:
             tds = row.find_elements_by_tag_name('td')
             if tds:
-                    val = {'name': tds[1].text, 'detail': tds[-2].text}
-                    if user_name == val['name']:
-                        return val['detail']
+                val = {'name': tds[1].text, 'detail': tds[-2].text}
+                if user_name == val['name']:
+                    return val['detail']
 
     # 获取信审专员姓名
     def get_credit_person(self, user_name):
@@ -65,8 +65,9 @@ class ManagerAllocation(BasePage):
                     return val['credit_person_name']
 
     # 按钮是否存在
-    def allocation_botton(self):
-        button = self.find_element_by_css('.btn.btn-info.waves-effect.waves-classic.s-btn-info.waves-effect.waves-classic.waves-effect.waves-classic').text
+    def allocation_button(self):
+        button = self.find_element_by_css(
+            '.btn.btn-info.waves-effect.waves-classic.s-btn-info.waves-effect.waves-classic.waves-effect.waves-classic').text
         return button
 
     # 分配角色流程

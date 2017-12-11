@@ -4,21 +4,21 @@ from page.manager_allocation import ManagerAllocation
 from page.test_page import TestPage
 import time
 from page.total_flow import TotalFlow
-from page.loan_list import LoanList
+from page.credit_audit_loan_list import CreditAuditLoanList
 from page.index import Index
 from utilities.my_sql import select_customer,clear_customer
 
 
 class TestManagerAllocation(BaseSeleniumTestCase):
     # 验证信审经理分配角色
-    name = u'小刘'
+    name = u'测试用户'
     login_name = 'zhangb'
     password = 'admin'
 
     # 验证分配按钮是否存在
     def test_allocation_button_true(self):
         TestPage(self.selenium).console_login(self.login_name, self.password)
-        text = ManagerAllocation(self.selenium).allocation_botton()
+        text = ManagerAllocation(self.selenium).allocation_button()
         self.assertEqual(text, u'分配')
 
     # 验证状态

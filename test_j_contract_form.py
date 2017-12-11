@@ -10,7 +10,7 @@ class TestContractForm(BaseSeleniumTestCase):
     # 验证信审专员信审结论
     login_name = 'wanqh'
     password = 'admin'
-    name = u'张十二博'
+    name = u'测试用户'
     loan_type = '2'
     rate = '2.18'
     cycle = '24'
@@ -43,7 +43,7 @@ class TestContractForm(BaseSeleniumTestCase):
         self.assertEqual(db_audit_actual_quota, self.actual_quota)
 
     # 验证审核通过状态
-    def test_contract_form_pass(self):
+    def     test_contract_form_pass(self):
         TestPage(self.selenium).console_login(self.login_name, self.password)
         get_customer_id = select_customer(self.name)['id']
         # 验证借款状态
@@ -59,8 +59,8 @@ class TestContractForm(BaseSeleniumTestCase):
         # 验证借款状态
         ContractForm(self.selenium, [get_customer_id]).contract_form(self.loan_type, self.rate, self.cycle,
                                                                      self.actual_quota, self.remarks)
-        contract_label = ContractForm(self.selenium, [get_customer_id]).contract_form_submit_repulse().contract_label()
-        self.assertEqual(contract_label, u'拒绝')
+        status = ContractForm(self.selenium, [get_customer_id]).contract_form_submit_repulse().contract_label()
+        self.assertEqual(status, u'拒绝')
 
     # 验证审核驳回
     def test_contract_form_reject(self):
@@ -69,8 +69,8 @@ class TestContractForm(BaseSeleniumTestCase):
         # 验证借款状态
         ContractForm(self.selenium, [get_customer_id]).contract_form(self.loan_type, self.rate, self.cycle,
                                                                      self.actual_quota, self.remarks)
-        contract_label = ContractForm(self.selenium, [get_customer_id]).contract_form_submit_reject().contract_label()
-        self.assertEqual(contract_label, u'补充资料')
+        status = ContractForm(self.selenium, [get_customer_id]).contract_form_submit_reject().contract_label()
+        self.assertEqual(status, u'补充资料')
 
     def tearDown(self):
         super(TestContractForm, self).tearDown()

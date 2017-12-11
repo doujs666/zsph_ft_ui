@@ -75,12 +75,21 @@ class BasePage(object):
     def get_current_page_url(self):
         return self.selenium.current_url
 
+    def get_page_title(self):
+        return self.selenium.title
+
+    def get_cookie_value(self):
+        return self.selenium.get_cookie('client_identity')['value']
+
     def get_current_window_handle(self):
         return self.selenium.current_window_handle
 
     def get_window_handles(self):
         return self.selenium.window_handles
 
+    def choose_window_handle(self, handle):
+        self.selenium.switch_to.window(handle)
+        return self
 
     # ---------------------------------------------------------------------------------------------------------------
     '''判断某个元素是否被添加到了dom里并且可见，可见代表元素可显示且宽和高都大于0'''
@@ -132,6 +141,11 @@ class BasePage(object):
     def find_elements_by_css(self, selector, wait_time=WAIT_TIME):
         return WebDriverWait(self.selenium, wait_time).until(
             expected.presence_of_all_elements_located((By.CSS_SELECTOR, selector)))
+
+    @fail_on_screenshot
+    def find_elements_by_class_name(self, selector, wait_time=WAIT_TIME):
+        return WebDriverWait(self.selenium, wait_time).until(
+            expected.presence_of_all_elements_located((By.CLASS_NAME, selector)))
 
     @fail_on_screenshot
     def find_elements_by_link_text(self, selector, wait_time=WAIT_TIME):
@@ -344,30 +358,13 @@ class BasePage(object):
         return WebDriverWait(self.selenium, wait_time).until(
             expected.visibility_of_element_located((By.TAG_NAME, selector)))
 
-    # -----------------------------------------------------------------------------------------------------------------
-    # @fail_on_screenshot
-    # def find_sub_element_by_css(self, selector, elem):
-    #     return elem.find_element(By.CSS_SELECTOR, selector)
-    #
-    # @fail_on_screenshot
-    # def find_sub_elements_by_css(self, selector, elem):
-    #     return elem.find_elements(By.CSS_SELECTOR, selector)
-    #
-    # @fail_on_screenshot
-    # def find_sub_elements_by_xpath(self, selector, elem):
-    #     return elem.find_elements(By.XPATH, selector)
-    #
-    # @fail_on_screenshot
-    # def find_sub_element_by_xpath(self, selector, elem):
-    #     return elem.find_element(By.XPATH, selector)
-    #
-    # @fail_on_screenshot
-    # def find_sub_element_by_tag(self, selector, elem):
-    #     return elem.find_element(By.TAG_NAME, selector)
-
     def get_cookie_by_name(self, name):
         cookie = self.selenium.get_cookie(name)
         return cookie['value']
 
     def get_session_id(self):
         return self.get_cookie_by_name("TSID")
+
+
+class UserBasePage(BasePage):
+    base_url = settings.WEB_TEST_BASE_URL

@@ -9,7 +9,7 @@ import time
 class TestContractForm(BaseSeleniumTestCase):
     login_name = 'gesy'
     password = 'admin'
-    name = u'张十一博'
+    name = u'张博2'
     loan_type = '4'
     rate = '2.39'
     cycle = '36'
