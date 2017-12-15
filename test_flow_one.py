@@ -4,21 +4,23 @@ from page.total_flow import TotalFlow
 from page.loan_list import LoanList
 from page.credit_audit_loan_list import CreditAuditLoanList
 from page.index import Index
+import time
 from utilities.my_sql import select_customer, clear_customer, clear_credit_report, clear_info_verify, clear_contract
 
 class TestTotalFlow(BaseSeleniumTestCase):
     # 风控专员审核通过
-    risk_management = 'gaohf'
+    risk_management = 'tianl'
     judge_manager = 'zhangb'
-    credit_person = 'wanqh'
+    credit_person = 'sunf'
     manager_login_name = 'gesy'
-    name = u'张十四博'
-    card_no = '340827198311170464'
+    name = u'张二十博'
+    card_no = '340827198311170462'
     mobile = '13522241003'
     status = 'pass'
 
     def test_loan_status(self):
         TotalFlow(self.selenium).risk_management_new_customer(self.name, self.card_no, self.mobile)
+        time.sleep(2)
         status = LoanList(self.selenium).get_loan_status(self.name)
         self.assertEqual(status, u'待审核')
         Index(self.selenium).click_user_list().click_user_quit()

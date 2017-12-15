@@ -21,8 +21,8 @@ class InfoVerifyNet(BasePage):
 
     # 保存成功关闭按钮
     def click_info_verify_quit(self):
+        time.sleep(5)
         self.find_element_by_css('.btn.btn-default.btn-pure.waves-effect.waves-classic.waves-effect.waves-classic').click()
-        time.sleep(0.5)
         return self
 
     # 流程

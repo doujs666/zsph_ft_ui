@@ -20,7 +20,7 @@ import random
 class TotalFlow(BasePage):
     risk_management = 'gaohf'
     judge_manager = 'zhangb'
-    credit_person = 'wanqh'
+    credit_person = 'sunf'
 
     password = 'admin'
     url = '?login'

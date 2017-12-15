@@ -39,7 +39,7 @@ class ManagerAllocation(BasePage):
                 # if u'待审核' == val['detail']:
                 ret.append(val['name'])
                 # handel = self.find_elements_by_name('id')
-                index = (ret.index(user_name))
+                index = ret.index(user_name)
                 handel = self.find_elements_by_name('id')
                 handel[index].click()
         return self
