@@ -1,12 +1,15 @@
 # coding=UTF-8
 from page.base_page import BasePage
+from utilities.my_sql import select_customer, get_loan_id
 import time
 
 
 class LoanSignPage(BasePage):
     # 合同审核
-
-    url = '/contract/toSignPage?loanId={0}&customer.id={1}'
+    name = u'测试合同审核'
+    get_customer_id = select_customer(name)['id']
+    db_get_loan_id = get_loan_id(get_customer_id)['id']
+    url = '/contract/toSignPage?loanId={0}&customer.id={1}'.format(db_get_loan_id,get_customer_id)
 
     # 获取合同名称
     def get_contract_status(self):
@@ -34,7 +37,7 @@ class LoanSignPage(BasePage):
 
     # 审批拒绝
     def choose_reject(self):
-        self.find_element_by_xpath('//*[@id="applyForm"]/div/div[2]/div[1]/div[2]/input')
+        self.find_element_by_xpath('/html/body/div[2]/div/form/div/div[2]/div[1]/div[2]/input').click()
         time.sleep(0.5)
         return self
 
@@ -45,10 +48,10 @@ class LoanSignPage(BasePage):
         return self
 
     # 放款按钮
-    def click_loan_button(self):
-        self.find_element_by_css('.btn.btn-info.waves-effect.waves-classic.s-btn-info.waves-effect.waves-classic.waves-effect.waves-classic').click()
+    def get_button_text(self):
+        message = self.find_element_by_id('apply').text
         time.sleep(0.5)
-        return self
+        return message
 
 
 

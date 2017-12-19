@@ -119,3 +119,8 @@ def get_loan_id(customer_id):
 # clear员工账号
 def clear_user_account(login_name):
     db.execute("delete FROM sys_user where login_name= %s", params=login_name)
+
+
+# clear已放款合同借款状态
+def clear_contract_loan_status(customer_id):
+    db.execute("UPDATE zsph_customer SET apply_state =30 WHERE id = %s ", params=customer_id)
