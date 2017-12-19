@@ -108,3 +108,14 @@ def clear_sign_page(customer_id):
 def get_sign_flag(customer_id):
     sign_flag = db.execute("SELECT sign_flag FROM zsph_contract  WHERE customer_id = %s ", params=customer_id)
     return sign_flag
+
+
+# 获取loan_id
+def get_loan_id(customer_id):
+    loan_id = db.execute("SELECT id FROM zsph_loan  WHERE customer_id = %s ", params=customer_id)
+    return loan_id
+
+
+# clear员工账号
+def clear_user_account(login_name):
+    db.execute("delete FROM sys_user where login_name= %s", params=login_name)

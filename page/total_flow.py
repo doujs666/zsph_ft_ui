@@ -13,25 +13,25 @@ from page.credit_report import CreditReport
 from page.info_verify_net import InfoVerifyNet
 from page.info_verify_tel import InfoVerifyTel
 from page.contract_form import ContractForm
+from page.sign_page import SignPage
 from page.manager_contract_form import ManagerContractForm
 import random
 
 
 class TotalFlow(BasePage):
-    risk_management = 'gaohf'
+    risk_management = 'tianl'
     judge_manager = 'zhangb'
     credit_person = 'sunf'
-
     password = 'admin'
     url = '?login'
 
     # 新建用户
-    def risk_management_new_customer(self, name, card_no, mobile):
-        TestPage(self.selenium).console_login(self.risk_management, self.password)
+    def risk_management_new_customer(self, login_name, customer_name, card_no, mobile):
+        TestPage(self.selenium).console_login(login_name, self.password)
         Index(self.selenium).click_customer_manage()
         CustomerList(self.selenium).click_new_customer()
-        CustomerFrom(self.selenium).new_customer(name, card_no, mobile, 24, '281545444@qq.com', 200000)
-        get_customer_id = select_customer(name)['id']
+        CustomerFrom(self.selenium).new_customer(customer_name, card_no, mobile, 24, '281545444@qq.com', 200000)
+        get_customer_id = select_customer(customer_name)['id']
         CustomerJob(self.selenium, [get_customer_id]).customer_job(u'测试公司名称', u'测试部门', u'测试职位',
                                                                    '010', '5438438', u'测试地址')
         CustomerLinkman(self.selenium, [get_customer_id]).linkman(u'测试联系人姓名', u'工作单位', u'测试地址',
@@ -42,14 +42,14 @@ class TotalFlow(BasePage):
         CustomerLoan(self.selenium, [get_customer_id]).customer_loan_submit()
 
     # 经理分配角色
-    def judge_manager_allocation_role(self, name):
-        TestPage(self.selenium).console_login(self.judge_manager, self.password)
-        CreditAuditLoanList(self.selenium).allocation_role(name)
+    def judge_manager_allocation_role(self, login_name, customer_name):
+        TestPage(self.selenium).console_login(login_name, self.password)
+        CreditAuditLoanList(self.selenium).allocation_role(customer_name)
 
     # 信审专员审核
-    def risk_management_submit_audit(self, name, status):
-        TestPage(self.selenium).console_login(self.credit_person, self.password)
-        get_customer_id = select_customer(name)['id']
+    def risk_management_submit_audit(self, login_name, customer_name, status):
+        TestPage(self.selenium).console_login(login_name, self.password)
+        get_customer_id = select_customer(customer_name)['id']
         CreditReport(self.selenium, [get_customer_id]).credit_report(6, 3000, 4000, 5000, 6000, 7000)
         InfoVerifyNet(self.selenium, [get_customer_id]).info_verify(u'网核信息')
         InfoVerifyTel(self.selenium, [get_customer_id]).info_verify(u'电核信息')
@@ -62,10 +62,11 @@ class TotalFlow(BasePage):
             ContractForm(self.selenium, [get_customer_id]).contract_form_submit_repulse()
 
     # 信审主管审核
-    def manager_contract_form(self, login_name, name, status):
+    def manager_contract_form(self, login_name, customer_name, approved_product, status):
         TestPage(self.selenium).console_login(login_name, self.password)
-        get_customer_id = select_customer(name)['id']
-        ManagerContractForm(self.selenium, [get_customer_id]).contract_form('4', '2.39', '36', '100000', u'备注')
+        get_customer_id = select_customer(customer_name)['id']
+        ManagerContractForm(self.selenium, [get_customer_id]).contract_form(approved_product, '2.39', '36', '100000',
+                                                                            u'备注')
         if status == 'pass':
             ManagerContractForm(self.selenium,
                                 [get_customer_id]).contract_form_submit_pass()
@@ -81,3 +82,9 @@ class TotalFlow(BasePage):
         if status == 'repulse':
             ManagerContractForm(self.selenium,
                                 [get_customer_id]).contract_form_submit_repulse()
+
+    # 风控专员填写合同
+    def submit_sign_page(self, login_name, customer_name, bank_number):
+        TestPage(self.selenium).console_login(login_name, self.password)
+        get_customer_id = select_customer(customer_name)['id']
+        SignPage(self.selenium, [get_customer_id]).sign_page_flow(bank_number)

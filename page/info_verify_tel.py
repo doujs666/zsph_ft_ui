@@ -22,7 +22,7 @@ class InfoVerifyTel(BasePage):
     # 保存成功关闭按钮
     def click_info_verify_quit(self):
         time.sleep(2)
-        self.find_element_by_css('.btn.btn-default.btn-pure.waves-effect.waves-classic.waves-effect.waves-classic').click()
+        self.find_element_by_id('message_id').click()
         return self
 
     # 流程

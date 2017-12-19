@@ -121,8 +121,8 @@ class SignPage(BasePage):
         return self
 
     # 整体流程
-    def sign_page_flow(self):
-        self.create_contract_flow()
+    def sign_page_flow(self, bank_number):
+        self.create_contract_flow(bank_number)
         self.click_apply_button().new_click_apply_button()
 
 

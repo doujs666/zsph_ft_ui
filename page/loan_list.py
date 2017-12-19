@@ -38,3 +38,13 @@ class LoanList(BasePage):
                 if user_name == val['name']:
                     return val['detail']
 
+    # 获取借款状态
+    def get_approved_product(self, user_name):
+        rows = self.find_elements_by_css('.table tbody tr')
+        for row in rows:
+            tds = row.find_elements_by_tag_name('td')
+            if tds:
+                val = {'name': tds[0].text, 'approved_product': tds[-6].text}
+                if user_name == val['name']:
+                    return val['approved_product']
+

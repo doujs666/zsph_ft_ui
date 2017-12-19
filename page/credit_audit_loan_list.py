@@ -78,6 +78,22 @@ class CreditAuditLoanList(BasePage):
                     if user_name == val1['name']:
                         return val1['detail']
 
+    # 获取批核产品
+    def get_approved_product(self, user_name, login_name):
+        time.sleep(2)
+        rows = self.find_elements_by_css('.table tbody tr')
+        for row in rows:
+            tds = row.find_elements_by_tag_name('td')
+            if tds:
+                if login_name != 'zhangb':
+                    val = {'name': tds[0].text, 'approved_product': tds[-6].text}
+                    if user_name == val['name']:
+                        return val['approved_product']
+                else:
+                    val1 = {'name': tds[1].text, 'approved_product': tds[-6].text}
+                    if user_name == val1['name']:
+                        return val1['approved_product']
+
     # 分配角色流程
     def allocation_role(self, user_name):
         self.click_allocation_role(user_name).click_allocation_button().choose_role()
