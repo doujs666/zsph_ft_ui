@@ -28,12 +28,10 @@ class TotalFlow(BasePage):
     # 新建用户
     def risk_management_new_customer(self, login_name, customer_name, card_no, mobile):
         TestPage(self.selenium).console_login(login_name, self.password)
-        Index(self.selenium).click_customer_manage()
-        CustomerList(self.selenium).click_new_customer()
         CustomerFrom(self.selenium).new_customer(customer_name, card_no, mobile, 24, '281545444@qq.com', 200000)
         get_customer_id = select_customer(customer_name)['id']
         CustomerJob(self.selenium, [get_customer_id]).customer_job(u'测试公司名称', u'测试部门', u'测试职位',
-                                                                   '010', '5438438', u'测试地址')
+                                                                   '010', '5438409', u'测试地址')
         CustomerLinkman(self.selenium, [get_customer_id]).linkman(u'测试联系人姓名', u'工作单位', u'测试地址',
                                                                   u'测试职位', '17600719709')
         type_number = str(random.randint(1, 6))

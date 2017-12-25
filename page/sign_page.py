@@ -123,6 +123,7 @@ class SignPage(BasePage):
     # 整体流程
     def sign_page_flow(self, bank_number):
         self.create_contract_flow(bank_number)
+        time.sleep(0.5)
         self.click_apply_button().new_click_apply_button()
 
 

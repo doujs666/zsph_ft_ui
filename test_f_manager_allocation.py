@@ -29,6 +29,7 @@ class TestManagerAllocation(BaseSeleniumTestCase):
         get_credit_person = ManagerAllocation(self.selenium).get_credit_person(self.name)
         self.assertEqual(get_credit_person, u'')
         ManagerAllocation(self.selenium).allocation_role(self.name)
+        time.sleep(2)
         status1 = ManagerAllocation(self.selenium).get_loan_status(self.name)
         self.assertEqual(status1, u'审批中')
         get_credit_person1 = ManagerAllocation(self.selenium).get_credit_person(self.name)

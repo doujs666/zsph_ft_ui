@@ -124,3 +124,8 @@ def clear_user_account(login_name):
 # clear已放款合同借款状态
 def clear_contract_loan_status(customer_id):
     db.execute("UPDATE zsph_customer SET apply_state =30 WHERE id = %s ", params=customer_id)
+
+
+# clear审核上标状态
+def clear_super_script(customer_id):
+    db.execute("update zsph_contract set project_state=0,project_no=NULL where customer_id = %s", params=customer_id)

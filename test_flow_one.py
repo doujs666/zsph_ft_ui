@@ -11,13 +11,13 @@ from utilities.my_sql import select_customer, clear_customer, clear_credit_repor
 
 class TestTotalFlow(BaseSeleniumTestCase):
     # 风控专员审核通过
-    risk_management = 'tianl'
+    risk_management = 'gaohf'
     judge_manager = 'zhangb'
-    credit_person = 'sunf'
+    credit_person = 'wanqh'
     manager_login_name = 'gesy'
     customer_name = u'张二十博'
-    card_no = '340827198311170462'
-    mobile = '13522241003'
+    card_no = '340827198311170489'
+    mobile = '13522241029'
     approved_product = '3'
     status = 'pass'
     bank_number = '6215590200000919787'
@@ -26,10 +26,10 @@ class TestTotalFlow(BaseSeleniumTestCase):
         # 新建客户
         TotalFlow(self.selenium).risk_management_new_customer(self.risk_management, self.customer_name, self.card_no,
                                                               self.mobile)
-        time.sleep(2)
-        status = LoanList(self.selenium).get_loan_status(self.customer_name)
-        self.assertEqual(status, u'待审核')
         Index(self.selenium).click_user_list().click_user_quit()
+        # time.sleep(2)
+        # status = LoanList(self.selenium).get_loan_status(self.customer_name)
+        # self.assertEqual(status, u'待审核')
         # 信审经理审核
         TotalFlow(self.selenium).judge_manager_allocation_role(self.judge_manager, self.customer_name)
         status1 = CreditAuditLoanList(self.selenium).get_loan_status(self.customer_name, self.judge_manager)
@@ -54,6 +54,7 @@ class TestTotalFlow(BaseSeleniumTestCase):
         self.assertEqual(approved_product1, u'公积金类')
         Index(self.selenium).click_user_list().click_user_quit()
 
+    # 合同专员审核合同
     def tearDown(self):
         super(TestTotalFlow, self).tearDown()
         customer_id = select_customer(self.customer_name)['id']

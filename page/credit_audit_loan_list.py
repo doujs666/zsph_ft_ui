@@ -54,7 +54,7 @@ class CreditAuditLoanList(BasePage):
             tds = row.find_elements_by_tag_name('td')
             if tds:
                 val = {'name': tds[1].text, 'detail': tds[-2].text}
-                if user_name == val['name'] and u'待审核' == val['detail']:
+                if user_name == val['name'] and u'审批中' == val['detail']:
                     self.find_element_by_name('id').click()
                     return self
         #           ret.append(val['name'])

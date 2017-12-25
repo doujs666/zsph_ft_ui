@@ -30,6 +30,7 @@ class ManagerAllocation(BasePage):
 
     # 选择点击分配角色
     def click_allocation_role(self, user_name):
+        time.sleep(0.5)
         rows = self.find_elements_by_css('.table tbody tr')
         ret = []
         for row in rows:
@@ -40,8 +41,8 @@ class ManagerAllocation(BasePage):
                 ret.append(val['name'])
                 # handel = self.find_elements_by_name('id')
                 index = ret.index(user_name)
-                handel = self.find_elements_by_name('id')
-                handel[index].click()
+        handel = self.find_elements_by_name('id')
+        handel[index].click()
         return self
 
     # 获取借款状态

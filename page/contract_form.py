@@ -9,6 +9,7 @@ class ContractForm(BasePage):
 
     # 借款状态
     def contract_label(self):
+        time.sleep(1)
         text = self.find_element_by_xpath('//*[@id="Loan_form"]/div[1]/div[3]/input').get_attribute("value")
         time.sleep(0.5)
         return text
