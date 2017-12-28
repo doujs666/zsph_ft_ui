@@ -55,11 +55,8 @@ class TestCustomerLoan(BaseSeleniumTestCase):
         # 验证loan数量
         new_loan_amount = loan_amount()
         self.assertEqual(db_loan_amount, new_loan_amount -1)
-        # loan页面验证
-        title_loan_amount = int(LoanList(self.selenium).loan_amount()[22:24])
-        self.assertEqual(new_loan_amount, title_loan_amount)
         # 提交通过
         CustomerLoan(self.selenium, [get_customer_id]).customer_loan_submit()
         time.sleep(2)
         status = LoanList(self.selenium).get_loan_status(self.name)
-        self.assertEqual(status, u'待审核')
+        self.assertEqual(status, u'审批中')

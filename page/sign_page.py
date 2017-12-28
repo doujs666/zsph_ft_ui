@@ -54,7 +54,8 @@ class SignPage(BasePage):
 
     # 点击提示信息关闭按钮
     def click_hint_close(self):
-        self.find_element_by_css('.btn.btn-default.btn-pure.waves-effect.waves-classic.waves-effect.waves-classic').click()
+        self.find_element_by_css(
+            '.btn.btn-default.btn-pure.waves-effect.waves-classic.waves-effect.waves-classic').click()
         time.sleep(0.5)
         return self
 
@@ -97,13 +98,20 @@ class SignPage(BasePage):
 
     # 点击提交按钮
     def click_apply_button(self):
+        time.sleep(1)
         self.find_element_by_id('apply').click()
         time.sleep(0.5)
         return self
 
     # 提交弹框确认按钮
     def new_click_apply_button(self):
+        time.sleep(2)
         self.find_element_by_id('applySub').click()
+        return self
+
+    # 关闭生成合同弹框
+    def click_close_button(self):
+        self.find_element_by_id('message_id').click()
         time.sleep(0.5)
         return self
 
@@ -117,7 +125,7 @@ class SignPage(BasePage):
 
     # 生成合同流程
     def create_contract_flow(self, bank_number):
-        self.account_number(bank_number).click_save_button().click_generate_button()
+        self.account_number(bank_number).click_save_button().click_generate_button().click_close_button()
         return self
 
     # 整体流程
@@ -125,5 +133,3 @@ class SignPage(BasePage):
         self.create_contract_flow(bank_number)
         time.sleep(0.5)
         self.click_apply_button().new_click_apply_button()
-
-

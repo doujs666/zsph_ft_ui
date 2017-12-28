@@ -5,7 +5,7 @@ import time
 
 
 class ManagerContractForm(BasePage):
-    # 经理信审结论
+    # 信审主管结论
     url = '/contract/form?customer.id={}'
 
     # 借款状态
@@ -65,8 +65,7 @@ class ManagerContractForm(BasePage):
 
     # 点击保存按钮
     def click_contract_save(self):
-        self.find_element_by_id(
-            'updateForm').click()
+        self.find_element_by_id('updateForm').click()
         time.sleep(0.5)
         return self
 

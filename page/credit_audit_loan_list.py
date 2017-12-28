@@ -22,7 +22,7 @@ class CreditAuditLoanList(BasePage):
 
     # 点击分配按钮
     def click_allocation_button(self):
-        self.find_element_by_css('.btn.btn-info.waves-effect.waves-classic.s-btn-info.waves-effect.waves-classic.waves-effect.waves-classic').click()
+        self.find_element_by_id('distributionMore').click()
         time.sleep(1)
         return self
 
@@ -93,6 +93,17 @@ class CreditAuditLoanList(BasePage):
                     val1 = {'name': tds[1].text, 'approved_product': tds[-6].text}
                     if user_name == val1['name']:
                         return val1['approved_product']
+
+    # 获取登录名
+    def get_login_name(self, user_name):
+        time.sleep(1)
+        rows = self.find_elements_by_css('.table tbody tr')
+        for row in rows:
+            tds = row.find_elements_by_tag_name('td')
+            if tds:
+                val = {'name': tds[1].text, 'new_login_name': tds[4].text}
+                if user_name == val['name']:
+                    return val['new_login_name']
 
     # 分配角色流程
     def allocation_role(self, user_name):

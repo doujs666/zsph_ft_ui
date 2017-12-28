@@ -3,6 +3,7 @@ from base import BaseSeleniumTestCase
 from page.loan_list import LoanList
 from page.test_page import TestPage
 from page.sign_page import SignPage
+import time
 from utilities.my_sql import select_customer, clear_sign_page, get_sign_flag
 
 
@@ -43,6 +44,7 @@ class TestSignPage(BaseSeleniumTestCase):
         get_customer_id = select_customer(self.name)['id']
         SignPage(self.selenium, [get_customer_id]).create_contract_flow(self.bank_number)
         SignPage(self.selenium, [get_customer_id]).sign_flow(self.verification_code)
+        time.sleep(1)
         sign_flag = int(get_sign_flag(get_customer_id)['sign_flag'])
         self.assertEqual(sign_flag, 1)
 

@@ -75,6 +75,7 @@ class TestNewCustomer(BaseSeleniumTestCase):
 
     def test_new_customer_success(self):
         db_customer_amount = customer_amount()
+        print db_customer_amount
         TestPage(self.selenium).console_login(self.user_name, self.password)
         Index(self.selenium).click_customer_manage()
         CustomerList(self.selenium).click_new_customer()

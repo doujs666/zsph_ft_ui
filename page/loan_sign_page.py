@@ -6,10 +6,7 @@ import time
 
 class LoanSignPage(BasePage):
     # 合同审核
-    name = u'测试合同审核'
-    get_customer_id = select_customer(name)['id']
-    db_get_loan_id = get_loan_id(get_customer_id)['id']
-    url = '/contract/toSignPage?loanId={0}&customer.id={1}'.format(db_get_loan_id,get_customer_id)
+    url = '/contract/toSignPage?customer.id={}'
 
     # 获取合同名称
     def get_contract_status(self):

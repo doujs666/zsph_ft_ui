@@ -30,6 +30,7 @@ class LoanList(BasePage):
 
     # 获取借款状态
     def get_loan_status(self, user_name):
+        time.sleep(1)
         rows = self.find_elements_by_css('.table tbody tr')
         for row in rows:
             tds = row.find_elements_by_tag_name('td')

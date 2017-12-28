@@ -75,3 +75,4 @@ class ManagerAllocation(BasePage):
     def allocation_role(self, user_name):
         self.click_allocation_role(user_name).click_allocation_button().choose_role()
         return self
+
