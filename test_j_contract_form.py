@@ -25,7 +25,7 @@ class TestContractForm(BaseSeleniumTestCase):
         self.assertEqual(contract_label, u'审批中')
         # 验证信审专员
         commissioner_name = ContractForm(self.selenium, [get_customer_id]).commissioner_name()
-        self.assertEqual(commissioner_name, u'许彤')
+        self.assertEqual(commissioner_name, u'万秋红')
         ContractForm(self.selenium, [get_customer_id]).contract_form(self.loan_type, self.rate, self.cycle,
                                                                      self.actual_quota, self.remarks)
         # 验证决策时间

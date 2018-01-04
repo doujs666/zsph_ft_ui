@@ -1,5 +1,7 @@
 ENV = 'test'
 WEB_TEST_BASE_URL = "http://116.62.207.57"
+# WEB_TEST_BASE_URL = "http://192.168.1.4:8080"
+# WEB_TEST_BASE_URL = "http://192.168.1.75:8080/ZSPH"
 WAIT_TIME = 10
 
 #redis
@@ -17,6 +19,13 @@ DB_CONFIG = {
     "USER": 'credit',
     "PASSWORD": '!Mi~p1Kkli&ASe'
 }
+
+# DB_CONFIG = {
+#     "HOST": '192.168.1.75',
+#     "PORT": 3306,
+#     "USER": 'root',
+#     "PASSWORD": 'root'
+# }
 
 import os
 

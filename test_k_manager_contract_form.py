@@ -11,7 +11,7 @@ class TestContractForm(BaseSeleniumTestCase):
     password = 'admin'
     name = u'张博2'
     loan_type = '4'
-    rate = '2.39'
+    rate = '2.49'
     cycle = '36'
     actual_quota = '50000.0'
     remarks = u'备注'

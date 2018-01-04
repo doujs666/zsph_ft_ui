@@ -34,4 +34,4 @@ class TestManagerAllocation(BaseSeleniumTestCase):
         self.assertEqual(status1, u'审批中')
         get_credit_person1 = ManagerAllocation(self.selenium).get_credit_person(self.name)
         time.sleep(0.5)
-        self.assertEqual(get_credit_person1, u'许彤')
+        self.assertEqual(get_credit_person1, u'万秋红')

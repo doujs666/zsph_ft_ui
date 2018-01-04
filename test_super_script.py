@@ -17,7 +17,7 @@ class TestSuperScript(BaseSeleniumTestCase):
     def test_click_examine_button(self):
         TestPage(self.selenium).console_login(self.login_name, self.password)
         # 校验跳转成功后url跳转
-        AuditSuperScript(self.selenium).click_button()
+        AuditSuperScript(self.selenium).click_allocation_role(self.customer_name)
         handles = AuditSuperScript(self.selenium).get_window_handles()
         url = AuditSuperScript(self.selenium).choose_window_handle(handles[1]).get_current_page_url()
         get_customer_id = select_customer(self.customer_name)['id']

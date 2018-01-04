@@ -4,8 +4,8 @@ from page.total_flow import TotalFlow
 from page.loan_list import LoanList
 from page.contract_list import ContractList
 from page.credit_audit_loan_list import CreditAuditLoanList
+from page.historical_list import HistoricalList
 from page.index import Index
-import time
 from utilities.my_sql import select_customer, clear_customer, clear_credit_report, clear_info_verify, clear_contract, \
     clear_sign_page
 
@@ -18,17 +18,18 @@ class TestTotalFlow(BaseSeleniumTestCase):
     manager_login_name = 'gesy'
     loan_manager = 'zhangy'
     super_script_manager = 'dulr'
-    customer_name = u'张二十博'
-    card_no = '340827198311170489'
-    mobile = '13522241029'
+    customer_name = u'张三丰12'
+    card_no = '340827198311170422'
+    mobile = '13522241042'
     approved_product = '3'
     status = 'pass'
     bank_number = '6215590200000919787'
     project_number = '998556'
 
     def test_loan_status(self):
-        # 新建客户
+        """总流程"""
 
+        # 新建客户
         TotalFlow(self.selenium).risk_management_new_customer(self.risk_management, self.customer_name, self.card_no,
                                                               self.mobile)
         # time.sleep(2)
@@ -42,10 +43,12 @@ class TestTotalFlow(BaseSeleniumTestCase):
         self.assertEqual(status1, u'审批中')
         Index(self.selenium).click_user_list().click_user_quit()
         # 信审专员审核
+        TotalFlow(self.selenium).risk_management_other(self.credit_person, self.customer_name)
+        Index(self.selenium).click_user_list().click_user_quit()
         TotalFlow(self.selenium).risk_management_submit_audit(self.credit_person, self.customer_name, self.status)
         Index(self.selenium).click_user_list().click_user_quit()
-    #
-    #
+
+
         # 信审主管审核
         # get_login_name =TotalFlow(self.selenium).get_login_name(self.judge_manager, self.customer_name)
         # print get_login_name
@@ -54,9 +57,9 @@ class TestTotalFlow(BaseSeleniumTestCase):
 
         TotalFlow(self.selenium).manager_contract_form(self.manager_login_name, self.customer_name,
                                                        self.approved_product, self.status)
-        status2 = CreditAuditLoanList(self.selenium).get_loan_status(self.customer_name, self.manager_login_name)
+        status2 = HistoricalList(self.selenium).get_loan_status(self.customer_name, self.manager_login_name)
         self.assertEqual(status2, u'待签约')
-        approved_product = CreditAuditLoanList(self.selenium).get_approved_product(self.customer_name, self.manager_login_name)
+        approved_product = HistoricalList(self.selenium).get_approved_product(self.customer_name, self.manager_login_name)
         self.assertEqual(approved_product, u'公积金类')
         Index(self.selenium).click_user_list().click_user_quit()
         # 风控专员提交合同
