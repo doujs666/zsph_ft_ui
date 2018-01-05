@@ -30,6 +30,7 @@ class TestTotalFlow(BaseSeleniumTestCase):
     project_number = '998556'
 
     def test_loan_status(self):
+        '''信审专员拒绝'''
 
         # 新建客户
         TotalFlow(self.selenium).risk_management_new_customer(self.risk_management, self.customer_name, self.card_no,
