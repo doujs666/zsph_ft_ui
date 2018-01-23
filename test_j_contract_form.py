@@ -2,13 +2,12 @@
 from base import BaseSeleniumTestCase
 from page.test_page import TestPage
 from page.contract_form import ContractForm
-from utilities.my_sql import select_customer, update_contract_form,get_contract_form
+from utilities.my_sql import select_customer, update_contract_form,get_contract_form,get_credit_person_login_name
 import time
 
 
 class TestContractForm(BaseSeleniumTestCase):
     # 验证信审专员信审结论
-    login_name = 'wanqh'
     password = 'admin'
     name = u'测试用户'
     loan_type = '2'
@@ -18,8 +17,10 @@ class TestContractForm(BaseSeleniumTestCase):
     remarks = u'备注'
 
     def test_contract_form_save_success(self):
-        TestPage(self.selenium).console_login(self.login_name, self.password)
+        # 获取信审专员
         get_customer_id = select_customer(self.name)['id']
+        login_name = get_credit_person_login_name(get_customer_id)
+        TestPage(self.selenium).console_login(login_name, self.password)
         # 验证借款状态
         contract_label = ContractForm(self.selenium, [get_customer_id]).contract_label()
         self.assertEqual(contract_label, u'审批中')

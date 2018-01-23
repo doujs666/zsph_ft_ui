@@ -30,13 +30,17 @@ class TotalFlow(BasePage):
     def risk_management_new_customer(self, login_name, customer_name, card_no, mobile):
         TestPage(self.selenium).console_login(login_name, self.password)
         CustomerFrom(self.selenium).new_customer(customer_name, card_no, mobile, 24, '281545444@qq.com', 200000)
-        get_customer_id = select_customer(customer_name)['id']
-        CustomerJob(self.selenium, [get_customer_id]).customer_job(u'测试公司名称', u'测试部门', u'测试职位',
-                                                                   '010', '5438409', u'测试地址')
-        CustomerLinkman(self.selenium, [get_customer_id]).linkman(u'测试联系人姓名', u'工作单位', u'测试地址',
-                                                                  u'测试职位', '17600719709')
+        # CustomerJob(self.selenium, [get_customer_id]).customer_job(u'测试公司名称', u'测试部门', u'测试职位',
+        #                                                            '010', '5438409', u'测试地址')
+        # CustomerLinkman(self.selenium, [get_customer_id]).linkman(u'测试联系人姓名', u'工作单位', u'测试地址',
+        #                                                           u'测试职位', '17600719709')
+
+     # 风控专员提交
+    def risk_management_submit(self, login_name, customer_name):
         type_number = str(random.randint(1, 6))
         cycle_number = str((random.randint(1, 3)) * 12)
+        get_customer_id = select_customer(customer_name)['id']
+        TestPage(self.selenium).console_login(login_name, self.password)
         CustomerLoan(self.selenium, [get_customer_id]).customer_loan_save(type_number, 10000, cycle_number, 100)
         CustomerLoan(self.selenium, [get_customer_id]).customer_loan_submit()
 
@@ -55,9 +59,9 @@ class TotalFlow(BasePage):
     def risk_management_other(self, login_name, customer_name):
         TestPage(self.selenium).console_login(login_name, self.password)
         get_customer_id = select_customer(customer_name)['id']
-        CreditReport(self.selenium, [get_customer_id]).credit_report(6, 3000, 4000, 5000, 6000, 7000)
-        InfoVerifyNet(self.selenium, [get_customer_id]).info_verify(u'网核信息')
-        InfoVerifyTel(self.selenium, [get_customer_id]).info_verify(u'电核信息')
+        # CreditReport(self.selenium, [get_customer_id]).credit_report(6, 3000, 4000, 5000, 6000, 7000)
+        # InfoVerifyNet(self.selenium, [get_customer_id]).info_verify(u'网核信息')
+        # InfoVerifyTel(self.selenium, [get_customer_id]).info_verify(u'电核信息')
 
     def risk_management_submit_audit(self, login_name, customer_name, status):
         TestPage(self.selenium).console_login(login_name, self.password)

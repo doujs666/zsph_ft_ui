@@ -89,17 +89,16 @@ class CustomerFrom(BasePage):
     def click_save(self):
         self.find_element_by_css(
             '.btn.btn-info.waves-effect.waves-classic.s-btn-info.waves-effect.waves-classic').click()
-        self.get_current_page_url()
         time.sleep(0.5)
         return self
 
     # 创建客户
     def new_customer(self, name, card_no, mobile, tel_time, email, annual_income):
         self.customer_name(name).customer_card_no(card_no).customer_mobile(mobile).customer_tel_time(tel_time)
-        self.customer_status()
+        # self.customer_status()
         self.customer_email(email).customer_annual_income(annual_income)
         self.click_save()
-        self.click_limit()
+        # self.click_limit()
 
     def get_card_no_error(self):
         message = self.find_element_by_xpath('//*[@id="customerForm"]/div[2]/div[2]/small[1]').text

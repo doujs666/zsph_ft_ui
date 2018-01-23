@@ -59,4 +59,4 @@ class TestCustomerLoan(BaseSeleniumTestCase):
         CustomerLoan(self.selenium, [get_customer_id]).customer_loan_submit()
         time.sleep(2)
         status = LoanList(self.selenium).get_loan_status(self.name)
-        self.assertEqual(status, u'审批中')
+        self.assertEqual(status, u'待审核')

@@ -129,3 +129,10 @@ def clear_contract_loan_status(customer_id):
 # clear审核上标状态
 def clear_super_script(customer_id):
     db.execute("update zsph_contract set project_state=0,project_no=NULL where customer_id = %s", params=customer_id)
+
+
+# 得到信审专员登录名
+def get_credit_person_login_name(customer_id):
+    commissioner = db.execute("select commissioner from zsph_loan where customer_id= %s", params=customer_id)
+    login_name = db.execute("SELECT login_name FROM sys_user where id= %s", params=commissioner['commissioner'])
+    return login_name
