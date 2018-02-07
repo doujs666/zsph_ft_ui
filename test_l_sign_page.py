@@ -8,9 +8,9 @@ from utilities.my_sql import select_customer, clear_sign_page, get_sign_flag
 
 
 class TestSignPage(BaseSeleniumTestCase):
-    login_name = 'gaohf'
+    login_name = 'tianl'
     password = 'admin'
-    name = u'江丹彤'
+    name = u'龚佳一'
     url = 'https://fht.fuiou.com/api_contractAPP.do'
     bank_number = '6215590200000919787'
     verification_code = '999999'

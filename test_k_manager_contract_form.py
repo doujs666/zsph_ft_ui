@@ -17,6 +17,7 @@ class TestContractForm(BaseSeleniumTestCase):
     remarks = u'备注'
 
     def test_contract_form_save_success(self):
+        '''信审主管保存'''
         TestPage(self.selenium).console_login(self.login_name, self.password)
         get_customer_id = select_customer(self.name)['id']
         # 验证借款状态
@@ -28,6 +29,7 @@ class TestContractForm(BaseSeleniumTestCase):
         decision_date = ManagerContractForm(self.selenium, [get_customer_id]).decision_date()
         get_time = time.strftime('%Y-%m-%d', time.localtime(time.time()))
         self.assertEqual(decision_date, get_time)
+
         # 验证数据库存储
         db_type = get_manager_contract_form(get_customer_id)['type']
         self.assertEqual(db_type, self.loan_type)
@@ -37,9 +39,6 @@ class TestContractForm(BaseSeleniumTestCase):
         self.assertEqual(db_cycle, self.cycle)
         db_actual_quota = str(get_manager_contract_form(get_customer_id)['actual_quota'])
         self.assertEqual(db_actual_quota, self.actual_quota)
-        # 验证信审主管
-        commissioner_name = ManagerContractForm(self.selenium, [get_customer_id]).governor_name()
-        self.assertEqual(commissioner_name, u'戈思雨')
 
     # 验证审核通过状态
     def test_manager_contract_form_pass(self):

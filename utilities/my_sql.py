@@ -21,12 +21,15 @@ def customer_job(customer_id):
                         params=customer_id)
     return detail
 
+#  清除customer_job详情
+def clear_customer_job(customer_id):
+    db.execute("delete from zsph_job where customer_id = %s ", params=customer_id)
+
+
 
 # customer_linkman详情
-def customer_linkman(customer_id):
-    detail = db.execute("SELECT name, tel, addr, position, work_unit FROM zsph_linkman where customer_id = %s ",
-                        params=customer_id)
-    return detail
+def clear_customer_linkman(customer_id):
+    db.execute("delete from zsph_linkman  where customer_id = %s ", params=customer_id)
 
 
 # customer_loan详情
@@ -34,6 +37,11 @@ def customer_loan(customer_id):
     detail = db.execute("SELECT type, repayment_quota, cycle, apply_quota FROM zsph_loan where customer_id = %s ",
                         params=customer_id)
     return detail
+
+
+# 清除customer_loan详情
+def clear_customer_loan(customer_id):
+    db.execute("delete FROM zsph_loan where customer_id = %s ", params=customer_id)
 
 
 # loan数量
@@ -99,7 +107,7 @@ def clear_contract(customer_id):
 # 清除合同信息
 def clear_sign_page(customer_id):
     db.execute("UPDATE zsph_contract SET bank_account ='' WHERE customer_id = %s ", params=customer_id)
-    db.execute("DELETE FROM zsph_contract_child where customer_id='' %s", params=customer_id)
+    db.execute("UPDATE zsph_contract_child SET view_url=NULL where customer_id='' %s", params=customer_id)
     db.execute("UPDATE zsph_contract SET sign_flag =0 WHERE customer_id = %s ", params=customer_id)
     db.execute("UPDATE zsph_customer SET apply_state =25 WHERE id = %s ", params=customer_id)
 

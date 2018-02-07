@@ -37,10 +37,10 @@ class ManagerAllocation(BasePage):
             tds = row.find_elements_by_tag_name('td')
             if tds:
                 val = {'name': tds[1].text, 'detail': tds[-2].text}
-                # if u'待审核' == val['detail']:
+                # if u'审批中' == val['detail']:
                 ret.append(val['name'])
                 # handel = self.find_elements_by_name('id')
-                index = ret.index(user_name)
+        index = ret.index(user_name)
         handel = self.find_elements_by_name('id')
         handel[index].click()
         return self

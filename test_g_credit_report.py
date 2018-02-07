@@ -10,7 +10,7 @@ class TestCreditReport(BaseSeleniumTestCase):
     # 信用报告
     login_name = 'wanqh'
     password = 'admin'
-    name = u'测试用户'
+    name = u'测试信审'
     num = random.randint(0, 10)
 
     amount = 10000
@@ -20,6 +20,7 @@ class TestCreditReport(BaseSeleniumTestCase):
     overdue = 50000
 
     def test_customer_linkman_success(self):
+        '''信用报告'''
         TestPage(self.selenium).console_login(self.login_name, self.password)
         get_customer_id = select_customer(self.name)['id']
         CreditReport(self.selenium, [get_customer_id]).credit_report(self.num, self.amount, self.use_amount,

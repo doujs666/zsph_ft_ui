@@ -6,6 +6,8 @@ import settings
 
 
 class TestConsoleLogin(BaseSeleniumTestCase):
+    '''登录'''
+
     user_name = 'gaohf'
     password = 'admin'
 

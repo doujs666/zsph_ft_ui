@@ -8,7 +8,7 @@ from page.historical_list import HistoricalList
 from page.index import Index
 from utilities.my_sql import select_customer, clear_customer, clear_credit_report, clear_info_verify, clear_contract, \
     clear_sign_page, get_credit_person_login_name
-
+import time
 
 
 class TestTotalFlow(BaseSeleniumTestCase):
@@ -47,8 +47,10 @@ class TestTotalFlow(BaseSeleniumTestCase):
         # status1 = CreditAuditLoanList(self.selenium).get_loan_status(self.customer_name, self.judge_manager)
         # self.assertEqual(status1, u'审批中')
         # Index(self.selenium).click_user_list().click_user_quit()
+
         # 信审专员审核
         get_customer_id = select_customer(self.customer_name)['id']
+        time.sleep(2)
         credit_person_login_name = get_credit_person_login_name(get_customer_id)['login_name']
         TotalFlow(self.selenium).risk_management_other(credit_person_login_name, self.customer_name)
         Index(self.selenium).click_user_list().click_user_quit()

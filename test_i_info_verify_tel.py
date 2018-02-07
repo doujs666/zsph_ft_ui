@@ -7,18 +7,15 @@ import random
 
 
 class TestInfoVerifyTel(BaseSeleniumTestCase):
-    login_name = 'wanqh'
+    '''电核信息'''
+    login_name = 'xut'
     password = 'admin'
-    name = u'测试用户'
+    name = u'测试信审'
     num = random.randint(0, 10)
     text = u'测试电核信息'
 
     def test_info_verify_tel_success(self):
+        '''测试电核信息'''
         TestPage(self.selenium).console_login(self.login_name, self.password)
         get_customer_id = select_customer(self.name)['id']
         InfoVerifyTel(self.selenium, [get_customer_id]).info_verify(self.text)
-
-    # def tearDown(self):
-    #     super(TestInfoVerifyTel, self).tearDown()
-    #     customer_id = select_customer(self.name)['id']
-    #     clear_info_verify(customer_id)
