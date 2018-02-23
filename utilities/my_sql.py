@@ -55,6 +55,7 @@ def clear_customer(customer_id):
     db.execute("DELETE FROM zsph_linkman where customer_id = %s ", params=customer_id)
     db.execute("DELETE FROM zsph_loan where customer_id = %s ", params=customer_id)
     db.execute("DELETE FROM zsph_risk_warning where customer_id = %s ", params=customer_id)
+    db.execute("DELETE FROM zsph_contract_child where customer_id = %s ", params=customer_id)
     db.execute("DELETE FROM zsph_customer where id = %s ", params=customer_id)
 
 
@@ -104,7 +105,7 @@ def clear_contract(customer_id):
     db.execute("DELETE FROM zsph_contract where customer_id = %s ", params=customer_id)
 
 
-# 清除合同信息
+# 更新合同信息
 def clear_sign_page(customer_id):
     db.execute("UPDATE zsph_contract SET bank_account ='' WHERE customer_id = %s ", params=customer_id)
     db.execute("UPDATE zsph_contract_child SET view_url=NULL where customer_id='' %s", params=customer_id)

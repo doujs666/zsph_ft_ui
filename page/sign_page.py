@@ -20,6 +20,12 @@ class SignPage(BasePage):
     # 银行账号
     def account_number(self, number):
         self.find_element_by_name('acntNo').send_keys(number)
+        time.sleep(0.5)
+        return self
+
+    # 点击同步江西银行电子账户
+    def click_synchro_jianxi_bank_account(self):
+        self.find_element_by_id('syncJX').click()
         return self
 
     # 点击保存按钮
@@ -30,6 +36,7 @@ class SignPage(BasePage):
     # 点击富有认证
     def click_fuyou_button(self):
         self.find_element_by_id('fuiouBtn').click()
+        time.sleep(0.5)
         return self
 
     # 富有认证按钮存不存在
@@ -130,6 +137,7 @@ class SignPage(BasePage):
 
     # 整体流程
     def sign_page_flow(self, bank_number):
+        self.click_synchro_jianxi_bank_account()
         self.create_contract_flow(bank_number)
         time.sleep(0.5)
         self.click_apply_button().new_click_apply_button()

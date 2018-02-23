@@ -8,7 +8,7 @@ def getToken(credit_id,key):
     md5 = hashlib.md5(src.encode('utf-8')).hexdigest()
     return md5
 
-print getToken('2018020100353','irongbei0321')
+print getToken('2018021200002','irongbei0321')
 
 
 
