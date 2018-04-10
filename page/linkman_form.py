@@ -69,8 +69,9 @@ class CustomerLinkman(BasePage):
     def linkman(self, name, work_unit, address, position, tel):
         for i in range(6):
             time.sleep(1)
+            new_tel = str(int(tel) +i)
             self.linkman_name(name, str(i)).linkman_list_relationship(str(i))
             self.linkman_work_unit(work_unit, str(i)).linkman_address(address, str(i)).linkman_position(position, str(
-                i)).linkman_tel(tel, str(i))
+                i)).linkman_tel(new_tel, str(i))
         self.click_linkman_save()
         self.click_linkman_quit()

@@ -1,6 +1,6 @@
 ENV = 'test'
 WEB_TEST_BASE_URL = "http://116.62.207.57"
-# WEB_TEST_BASE_URL = "http://192.168.10.14:8080/ZSPH"
+# WEB_TEST_BASE_URL = "http://116.62.144.138"
 WAIT_TIME = 10
 
 #redis
@@ -18,7 +18,7 @@ DB_CONFIG = {
     "USER": 'credit',
     "PASSWORD": '!Mi~p1Kkli&ASe'
 }
-
+#
 # DB_CONFIG = {
 #     "HOST": '116.62.144.138',
 #     "PORT": 3306,
