@@ -5,13 +5,13 @@ import json,settings
 
 
 class TestFirstPaymentApi(TestCase):
-    credit_id = '2017122900003'
-    token = '54B660E75DCF55827802C14D4683B579'
+    username = 'gaohf'
+    password = 'admin'
 
     @classmethod
     def test_get_response_content(self):
         first_user_invest_api = FirstPayment()
-        first_user_invest_api.post({"creditId": self.credit_id, "token": self.token})
+        first_user_invest_api.post({"username": self.username, "password": self.password})
         print first_user_invest_api.get_response_message()
         # self.assertEqual(first_user_invest_api.get_code(), u'0000')
         # self.assertEqual(first_user_invest_api.get_response_message(), u'账户余额不足')

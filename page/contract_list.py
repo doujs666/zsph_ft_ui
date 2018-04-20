@@ -29,7 +29,7 @@ class ContractList(BasePage):
         for row in rows:
             tds = row.find_elements_by_tag_name('td')
             if tds:
-                val = {'name': tds[2].text, 'detail': tds[-4].text}
+                val = {'name': tds[2].text, 'detail': tds[-5].text}
                 if user_name == val['name']:
                     return val['detail']
 
