@@ -1,8 +1,8 @@
 # coding=UTF-8
 import logging
 from unittest import TestCase
-from pytesser3 import *
-from PIL import Image
+# from pytesser3 import *
+# from PIL import Image
 from selenium import webdriver
 import settings
 
@@ -27,7 +27,9 @@ class BaseSeleniumTestCase(TestCase):
     # 无头模式
     def get_web_driver(self):
         driver = webdriver.Firefox(
-            executable_path=settings.GECKODRIVER_PATH) if settings.ENV == "dev" else webdriver.PhantomJS()
+            executable_path=settings.GECKODRIVER_PATH) if settings.ENV == "dev" else webdriver.PhantomJS(
+            "/usr/local/Cellar/phantomjs/2.1.1/bin/phantomjs"
+        )
         driver.set_window_size(1400, 1000)
         return driver
 
@@ -39,19 +41,19 @@ class BaseSeleniumTestCase(TestCase):
         pass
 
 
-class ImageCaptcha(object):
-
-    def get_image_captcha(self, file_path):
-
-        img = Image.open(file_path)
-        img_grey = img.convert('L')
-        threshold = 140
-        table = []
-        for i in range(256):
-            if i < threshold:
-                table.append(0)
-            else:
-                table.append(1)
-        # img_out = img_grey.point(table, '1')
-        image_text = image_to_string(img_grey)
-        return image_text
+# class ImageCaptcha(object):
+#
+#     def get_image_captcha(self, file_path):
+#
+#         img = Image.open(file_path)
+#         img_grey = img.convert('L')
+#         threshold = 140
+#         table = []
+#         for i in range(256):
+#             if i < threshold:
+#                 table.append(0)
+#             else:
+#                 table.append(1)
+#         # img_out = img_grey.point(table, '1')
+#         image_text = image_to_string(img_grey)
+#         return image_text

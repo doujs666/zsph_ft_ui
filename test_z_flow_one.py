@@ -18,7 +18,7 @@ class TestTotalFlow(BaseSeleniumTestCase):
     manager_login_name = 'gesy'
     loan_manager = 'zhangy'
     super_script_manager = 'dulr'
-    customer_name = u'赵俊鹏3'
+    customer_name = u'赵俊鹏4'
     card_no = '620823199304235704'
     mobile = '13552471080'
     approved_product = '3'
