@@ -57,8 +57,8 @@ class CustomerLinkman(BasePage):
 
     # 关闭成功按钮
     def click_linkman_quit(self):
-        self.find_element_by_css(
-            '.btn.btn-default.btn-pure.waves-effect.waves-classic.waves-effect.waves-classic').click()
+        self.find_element_by_id(
+            'message_id').click()
         time.sleep(0.5)
         return self
 

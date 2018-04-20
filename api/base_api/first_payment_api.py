@@ -1,15 +1,15 @@
 # -*- coding:utf-8 -*-
-from api.base_api.base_api import BaseApi
+from api.web_api.base_web_api import WebBaseApi
 
 
-class FirstPayment(BaseApi):
+class FirstPayment(WebBaseApi):
     """
     签到
     """
-    url = '/api/notify/firstPayment'
+    url = '/'
 
     def build_custom_param(self,data):
         return {
-            "creditId": data['creditId'],
-            "token": data['token'],
+            "username": data['username'],
+            "password": data['password'],
             }
