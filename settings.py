@@ -3,14 +3,14 @@ WEB_TEST_BASE_URL = "http://116.62.207.57"
 # WEB_TEST_BASE_URL = "http://116.62.144.138"
 WAIT_TIME = 10
 
-#redis
+# redis
 REDIS_HOST = '192.168.1.157'
 REDIS_PORT = 20016
 SESSION_REDIS_DB = 2
 
 # UMPAY_BASE_URL = "http://192.168.1.157:5000/spay/pay/payservice.do"
-# GECKODRIVER_PATH = 'geckodriver'  # used by FireFox
-GECKODRIVER_PATH = 'chromedriver'
+GECKODRIVER_PATH = 'geckodriver'  # used by FireFox
+# GECKODRIVER_PATH = 'chromedriver' #used by chrome
 
 DB_CONFIG = {
     "HOST": '116.62.207.57',

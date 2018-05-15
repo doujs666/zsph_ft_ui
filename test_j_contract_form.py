@@ -7,7 +7,7 @@ import time
 
 
 class TestContractForm(BaseSeleniumTestCase):
-    '''验证信审专员信审结论'''
+    """验证信审专员信审结论"""
     password = 'admin'
     name = u'测试信审'
     loan_type = '2'
@@ -17,7 +17,7 @@ class TestContractForm(BaseSeleniumTestCase):
     remarks = u'备注'
 
     def test_contract_form_save_success(self):
-        '''信审专员保存'''
+        """信审专员保存"""
 
         # 获取信审专员
         get_customer_id = select_customer(self.name)['id']
@@ -28,7 +28,7 @@ class TestContractForm(BaseSeleniumTestCase):
         self.assertEqual(contract_label, u'审批中')
         # 验证信审专员
         commissioner_name = ContractForm(self.selenium, [get_customer_id]).commissioner_name()
-        self.assertEqual(commissioner_name, u'许彤')
+        self.assertEqual(commissioner_name, u'孙峰')
         ContractForm(self.selenium, [get_customer_id]).contract_form(self.loan_type, self.rate, self.cycle,
                                                                      self.actual_quota, self.remarks)
         # 验证决策时间
@@ -46,7 +46,7 @@ class TestContractForm(BaseSeleniumTestCase):
         self.assertEqual(db_audit_actual_quota, self.actual_quota)
 
     def test_contract_form_pass(self):
-        '''信审专员审核通过'''
+        """信审专员审核通过"""
         get_customer_id = select_customer(self.name)['id']
         login_name = get_credit_person_login_name(get_customer_id)['login_name']
         TestPage(self.selenium).console_login(login_name, self.password)
@@ -56,19 +56,8 @@ class TestContractForm(BaseSeleniumTestCase):
         contract_label = ContractForm(self.selenium, [get_customer_id]).contract_form_submit_pass().contract_label()
         self.assertEqual(contract_label, u'复核中')
 
-    def test_contract_form_repulse(self):
-        '''验证审核拒绝'''
-        get_customer_id = select_customer(self.name)['id']
-        login_name = get_credit_person_login_name(get_customer_id)['login_name']
-        TestPage(self.selenium).console_login(login_name, self.password)
-        # 验证借款状态
-        ContractForm(self.selenium, [get_customer_id]).contract_form(self.loan_type, self.rate, self.cycle,
-                                                                     self.actual_quota, self.remarks)
-        status = ContractForm(self.selenium, [get_customer_id]).contract_form_submit_repulse().contract_label()
-        self.assertEqual(status, u'拒绝')
-
     def test_contract_form_reject(self):
-        '''信审专员驳回'''
+        """信审专员驳回"""
         get_customer_id = select_customer(self.name)['id']
         login_name = get_credit_person_login_name(get_customer_id)['login_name']
         TestPage(self.selenium).console_login(login_name, self.password)

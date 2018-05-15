@@ -1,15 +1,16 @@
 # -*- coding:utf-8 -*-
-from api.web_api.base_web_api import WebBaseApi
+from .base_api import BaseApi
 
 
-class FirstPayment(WebBaseApi):
+class UserRegister(BaseApi):
     """
-    签到
+    用户祖册
     """
-    url = '/'
+    url = '/register'
 
-    def build_custom_param(self,data):
+    def build_custom_param(self, data):
         return {
-            "username": data['username'],
-            "password": data['password'],
-            }
+            "mobile": data['mobile'],
+            "verifyCode": data['verifyCode'],
+            "password": data['password']
+        }

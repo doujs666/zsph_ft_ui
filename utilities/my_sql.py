@@ -54,6 +54,7 @@ def clear_customer(customer_id):
     db.execute("DELETE FROM zsph_job where customer_id = %s ", params=customer_id)
     db.execute("DELETE FROM zsph_linkman where customer_id = %s ", params=customer_id)
     db.execute("DELETE FROM zsph_loan where customer_id = %s ", params=customer_id)
+    db.execute("DELETE FROM zsph_certificates where customer_id = %s ", params=customer_id)
     db.execute("DELETE FROM zsph_risk_warning where customer_id = %s ", params=customer_id)
     db.execute("DELETE FROM zsph_contract_child where customer_id = %s ", params=customer_id)
     db.execute("DELETE FROM zsph_customer where id = %s ", params=customer_id)

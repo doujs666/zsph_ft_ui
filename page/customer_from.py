@@ -86,9 +86,11 @@ class CustomerFrom(BasePage):
         time.sleep(0.5)
         return self
 
+    # 点击保存按钮
     def click_save(self):
-        self.find_element_by_css(
-            '.btn.btn-info.waves-effect.waves-classic.s-btn-info.waves-effect.waves-classic').click()
+        button = self.find_element_by_id('saveBtn')
+        self.execute_script()
+        button.click()
         time.sleep(0.5)
         return self
 

@@ -21,7 +21,7 @@ class TestNewCustomer(BaseSeleniumTestCase):
     annual_income = 200000
 
     def test_new_customer_url(self):
-        '''测试url跳转'''
+        """测试url跳转"""
         TestPage(self.selenium).console_login(self.user_name, self.password)
         Index(self.selenium).click_customer_manage()
         # 校验跳转成功后url跳转
@@ -32,19 +32,19 @@ class TestNewCustomer(BaseSeleniumTestCase):
         self.assertEqual(url, settings.WEB_TEST_BASE_URL + '/customer/form')
 
     def test_customer_name(self):
-        '''测试姓名'''
+        """测试姓名"""
         TestPage(self.selenium).console_login(self.user_name, self.password)
         none_message = CustomerFrom(self.selenium).customer_card_no('').click_save().get_name_none_error()
         self.assertEqual(none_message, u'此值不能为空')
 
     def test_customer_mobile(self):
-        '''测试手机号'''
+        """测试手机号"""
         TestPage(self.selenium).console_login(self.user_name, self.password)
         none_message = CustomerFrom(self.selenium).customer_card_no('').click_save().get_mobile_none_error_error()
         self.assertEqual(none_message, u'此值不能为空')
 
     def test_customer_card_no(self):
-        '''测试身份证号'''
+        """测试身份证号"""
         TestPage(self.selenium).console_login(self.user_name, self.password)
         message = CustomerFrom(self.selenium).customer_card_no('sdfd').get_card_no_error()
         self.assertEqual(message, u'身份证号码不合法')
@@ -56,7 +56,7 @@ class TestNewCustomer(BaseSeleniumTestCase):
         self.assertEqual(none_message, u'此值不能为空')
 
     def test_customer_email(self):
-        '''测试邮箱'''
+        """测试邮箱"""
         TestPage(self.selenium).console_login(self.user_name, self.password)
         message = CustomerFrom(self.selenium).customer_email('123').get_email_error()
         self.assertEqual(message, u'邮件地址不合法')
@@ -66,13 +66,13 @@ class TestNewCustomer(BaseSeleniumTestCase):
         self.assertEqual(none_message, u'此值不能为空')
 
     def test_customer_annual_income(self):
-        '''测试个人月收入'''
+        """测试个人月收入"""
         TestPage(self.selenium).console_login(self.user_name, self.password)
         message = CustomerFrom(self.selenium).customer_annual_income('abc').get_annual_income_error()
         self.assertEqual(message, u'请输入数字可带小数')
 
     def test_new_customer_success(self):
-        '''测试新建客户'''
+        """测试新建客户"""
         db_customer_amount = customer_amount()
         TestPage(self.selenium).console_login(self.user_name, self.password)
         CustomerFrom(self.selenium).new_customer(self.name, self.card_no, self.mobile, self.tel_time, self.email,
@@ -90,5 +90,10 @@ class TestNewCustomer(BaseSeleniumTestCase):
         self.assertEqual(db_customer_amount, new_customer_amount - 1)
 
         # clear数据
-        id = select_customer(self.name)['id']
-        clear_customer(id)
+        customer_id = select_customer(self.name)['id']
+        clear_customer(customer_id)
+
+    # def tearDown(self):
+    #     super(TestNewCustomer, self).tearDown()
+    #     customer_id = select_customer(self.name)['id']
+    #     clear_customer(customer_id)

@@ -10,7 +10,8 @@ class ContractForm(BasePage):
     # 借款状态
     def contract_label(self):
         time.sleep(1)
-        text = self.find_element_by_xpath('//*[@id="Loan_form"]/div[1]/div[3]/input').get_attribute("value")
+        text = self.find_element_by_xpath('//*[@id="Loan_form"]/div[2]/div[3]/input').get_attribute("value")
+
         time.sleep(0.5)
         return text
 
@@ -85,12 +86,6 @@ class ContractForm(BasePage):
         time.sleep(0.5)
         return self
 
-    # 审批拒绝
-    def contract_submit_repulse(self):
-        self.find_element_by_xpath('//*[@id="applyForm"]/div/div[2]/div[1]/div[3]/input').click()
-        time.sleep(0.5)
-        return self
-
     # 点击审批确定按钮
     def contract_submit_confirm(self):
         self.find_element_by_css('.btn.btn-primary.waves-effect.waves-classic').click()
@@ -119,14 +114,6 @@ class ContractForm(BasePage):
     def contract_form_submit_reject(self):
         self.click_contract_submit()
         self.contract_submit_reject()
-        self.contract_submit_confirm()
-        time.sleep(3)
-        return self
-
-    # 信审专员审核拒绝
-    def contract_form_submit_repulse(self):
-        self.click_contract_submit()
-        self.contract_submit_repulse()
         self.contract_submit_confirm()
         time.sleep(3)
         return self

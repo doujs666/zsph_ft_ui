@@ -91,6 +91,16 @@ class BasePage(object):
         self.selenium.switch_to.window(handle)
         return self
 
+    # 刷新页面
+    def refresh_page(self):
+        self.selenium.refresh()
+        return self
+
+    # 控制js
+    def execute_script(self):
+        js = "window.scrollTo(0,0)"
+        self.selenium.execute_script(js)
+
     # ---------------------------------------------------------------------------------------------------------------
     '''判断某个元素是否被添加到了dom里并且可见，可见代表元素可显示且宽和高都大于0'''
 

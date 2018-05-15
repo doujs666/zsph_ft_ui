@@ -19,19 +19,20 @@ logger = logging.getLogger(__name__)
 
 class BaseSeleniumTestCase(TestCase):
 
+
+    def get_web_driver(self):
+        driver = webdriver.Firefox(executable_path=settings.GECKODRIVER_PATH)
+        driver.maximize_window()
+        return driver
+
+    # # 无头模式
     # def get_web_driver(self):
-    #     driver = webdriver.Firefox(executable_path=settings.GECKODRIVER_PATH)
+    #     driver = webdriver.Firefox(
+    #         executable_path=settings.GECKODRIVER_PATH) if settings.ENV == "dev" else webdriver.PhantomJS(
+    #         "/usr/local/Cellar/phantomjs/2.1.1/bin/phantomjs"
+    #     )
     #     driver.set_window_size(1400, 1000)
     #     return driver
-
-    #无头模式
-    def get_web_driver(self):
-        driver = webdriver.Firefox(
-            executable_path=settings.GECKODRIVER_PATH) if settings.ENV == "dev" else webdriver.PhantomJS(
-            "/usr/local/Cellar/phantomjs/2.1.1/bin/phantomjs"
-        )
-        driver.set_window_size(1400, 1000)
-        return driver
 
     def setUp(self):
         self.selenium = self.get_web_driver()
