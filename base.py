@@ -19,13 +19,12 @@ logger = logging.getLogger(__name__)
 
 class BaseSeleniumTestCase(TestCase):
 
-
     def get_web_driver(self):
         driver = webdriver.Firefox(executable_path=settings.GECKODRIVER_PATH)
         driver.maximize_window()
         return driver
 
-    # # 无头模式
+    # 无头模式
     # def get_web_driver(self):
     #     driver = webdriver.Firefox(
     #         executable_path=settings.GECKODRIVER_PATH) if settings.ENV == "dev" else webdriver.PhantomJS(
@@ -40,7 +39,6 @@ class BaseSeleniumTestCase(TestCase):
     def tearDown(self):
         self.selenium.quit()
         pass
-
 
 # class ImageCaptcha(object):
 #

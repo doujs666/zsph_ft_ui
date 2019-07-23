@@ -31,6 +31,7 @@ class TotalFlow(BasePage):
         TestPage(self.selenium).console_login(login_name, self.password)
         CustomerFrom(self.selenium).new_customer(customer_name, card_no, mobile, 24, '281545444@qq.com', 200000)
         get_customer_id = select_customer(customer_name)['id']
+        print(get_customer_id)
         # CustomerJob(self.selenium, [get_customer_id]).customer_job(u'测试公司名称', u'测试部门', u'测试职位',
         #                                                            '010', '5438409', u'测试地址')
         # CustomerLinkman(self.selenium, [get_customer_id]).linkman(u'测试联系人姓名', u'工作单位', u'测试地址',
@@ -42,7 +43,7 @@ class TotalFlow(BasePage):
         cycle_number = str((random.randint(1, 3)) * 12)
         get_customer_id = select_customer(customer_name)['id']
         TestPage(self.selenium).console_login(login_name, self.password)
-        CustomerLoan(self.selenium, [get_customer_id]).customer_loan_save(type_number, 10000, cycle_number, 100)
+        CustomerLoan(self.selenium, [get_customer_id]).customer_loan_save(type_number, 20000, cycle_number, 100)
         CustomerLoan(self.selenium, [get_customer_id]).customer_loan_submit()
 
     # 经理分配角色

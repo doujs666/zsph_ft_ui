@@ -1,5 +1,6 @@
+# -*- coding:utf-8 -*-
 ENV = 'test'
-WEB_TEST_BASE_URL = "http://116.62.207.57"
+WEB_TEST_BASE_URL = "http://101.37.114.86:8010"
 # WEB_TEST_BASE_URL = "http://116.62.144.138"
 WAIT_TIME = 10
 
@@ -12,19 +13,10 @@ SESSION_REDIS_DB = 2
 GECKODRIVER_PATH = 'geckodriver'  # used by FireFox
 # GECKODRIVER_PATH = 'chromedriver' #used by chrome
 
-DB_CONFIG = {
-    "HOST": '116.62.207.57',
-    "PORT": 3306,
-    "USER": 'credit',
-    "PASSWORD": '!Mi~p1Kkli&ASe'
-}
-#
-# DB_CONFIG = {
-#     "HOST": '116.62.144.138',
-#     "PORT": 3306,
-#     "USER": 'credit',
-#     "PASSWORD": '!Mi~p1Kkli&ASe'
-# }
+# Mysql配置
+TEST_MYSQL_CONFIG = {'host': 'test-zsph.mysql.rds.aliyuncs.com', 'port': 3306, 'user': 'credit_test', 'password': '1XPFrpm^D!8#lxbWa3'}
+TEST_DEFAULT_DB = 'credit_test'
+
 
 import os
 

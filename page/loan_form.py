@@ -50,14 +50,15 @@ class CustomerLoan(BasePage):
 
     # 点击保存按钮
     def click_loan_save(self):
+        time.sleep(2)
         self.find_element_by_css(
             '.btn.btn-info.waves-effect.waves-classic.s-btn-info.waves-effect.waves-classic.waves-effect.waves-classic').click()
         return self
 
     # 点击关闭按钮
     def click_loan_close(self):
-        self.find_element_by_css(
-            '.btn.btn-default.btn-pure.waves-effect.waves-classic.waves-effect.waves-classic').click()
+        time.sleep(2)
+        self.find_element_by_id('message_id').click()
         return self
 
     # loan保存流程

@@ -1,12 +1,14 @@
+# -*- coding:utf-8 -*-
 import pymysql.cursors
 import settings
 
 
-def execute(sql, params=None, db='credit_test', is_fetchone=True):
+def execute(sql, params=None, db=settings.TEST_DEFAULT_DB, is_fetchone=True):
     # Connect to the database
-    connection = pymysql.connect(host=settings.DB_CONFIG['HOST'],
-                                 user=settings.DB_CONFIG['USER'],
-                                 password=settings.DB_CONFIG['PASSWORD'],
+    connection = pymysql.connect(host=settings.TEST_MYSQL_CONFIG['host'],
+                                 port=settings.TEST_MYSQL_CONFIG['port'],
+                                 user=settings.TEST_MYSQL_CONFIG['user'],
+                                 password=settings.TEST_MYSQL_CONFIG['password'],
                                  db=db,
                                  autocommit=True,
                                  charset='utf8mb4',
